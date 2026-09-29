@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hearthGlow" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="40%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <linearGradient id="sunBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#fef08a" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Atmospheric Hearth Room -->
+  <rect width="1280" height="720" fill="url(#hearthGlow)"/>
+
+  <!-- Timber Ceiling Rafters -->
+  <rect x="0" y="40" width="1280" height="30" fill="#451a03"/>
+  <line x1="200" y1="0" x2="200" y2="720" stroke="#292524" stroke-width="8"/>
+  <line x1="600" y1="0" x2="600" y2="720" stroke="#292524" stroke-width="8"/>
+  <line x1="1000" y1="0" x2="1000" y2="720" stroke="#292524" stroke-width="8"/>
+
+  <!-- High Sunlight Slanted Beam -->
+  <polygon points="1100,0 1280,0 800,720 500,720" fill="url(#sunBeam)"/>
+
+  <!-- Clay Chulha Stove & Brass Utensils -->
+  <rect x="180" y="460" width="220" height="120" rx="20" fill="#78350f"/>
+  <circle cx="240" cy="480" r="18" fill="#f97316"/> <!-- Flame -->
+  <circle cx="340" cy="480" r="18" fill="#ef4444"/> <!-- Flame -->
+  <!-- Brass Pot -->
+  <ellipse cx="290" cy="460" rx="35" ry="16" fill="#facc15"/>
+  <rect x="260" y="445" width="60" height="30" fill="#eab308"/>
+
+  <!-- Bebe Standing by Stove with Ladle -->
+  <circle cx="290" cy="320" r="22" fill="#ca8a04"/>
+  <path d="M 265 345 L 315 345 L 330 520 L 250 520 Z" fill="#881337"/>
+  <line x1="315" y1="380" x2="360" y2="440" stroke="#ca8a04" stroke-width="6"/> <!-- Ladle -->
+
+  <!-- Amar Sitting on Low Peeri near Woodpile -->
+  <rect x="520" y="520" width="70" height="30" fill="#b45309"/> <!-- Peeri stool -->
+  <circle cx="550" cy="420" r="22" fill="#c2410c"/> <!-- Turban -->
+  <path d="M 525 445 L 575 445 L 585 550 L 515 550 Z" fill="#e2e8f0"/> <!-- Kurta -->
+  <rect x="530" y="450" width="40" height="50" fill="#78350f"/> <!-- Waistcoat holding secret -->
+
+  <!-- Kabir Standing Aggressively near the Light Beam -->
+  <circle cx="950" cy="300" r="24" fill="#f87171"/>
+  <path d="M 915 330 L 985 330 L 995 560 L 905 560 Z" fill="#1e3a8a"/> <!-- Jeans -->
+  <path d="M 915 330 L 985 330 L 980 440 L 920 440 Z" fill="#78350f"/> <!-- Leather Jacket -->
+  <line x1="985" y1="360" x2="1030" y2="390" stroke="#f87171" stroke-width="8"/> <!-- Gesturing Arm -->
+
+  <!-- Cinematic Framing Text Overlay -->
+  <rect x="40" y="40" width="380" height="56" rx="8" fill="#0f172a" fill-opacity="0.85" stroke="#334155"/>
+  <text x="60" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">SCENE 2: INT. HEARTH & KITCHEN</text>
+  <text x="60" y="88" font-family="monospace" font-size="11" fill="#f59e0b">WOODSMOKE • SIBLING CLASH • LAND INTIQAL DEMAND</text>
+</svg>

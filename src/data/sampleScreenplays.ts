@@ -1,0 +1,130 @@
+export interface SampleScreenplayOption {
+  id: string;
+  title: string;
+  logline: string;
+  scenesCount: number;
+  charactersCount: number;
+  rawText: string;
+}
+
+export const SAMPLE_SCREENPLAYS: SampleScreenplayOption[] = [
+  {
+    id: 'inheritance_deed',
+    title: 'The Ancestral Deed (Neutral Source)',
+    logline: 'When an eviction notice threatens a multi-generational homestead, the elder brother hides the debt while the ambitious younger brother demands to sell his share.',
+    scenesCount: 3,
+    charactersCount: 3,
+    rawText: `SCENE 1: EXT. HOMESTEAD COURTYARD - EARLY MORNING
+
+A heavy mist clings to the brick walls of the courtyard. A solitary wooden cot rests near the boundary wall. 
+
+AMAR (32), weathered beyond his years with dirt under his fingernails, sits on the edge of the cot laceing his worn leather shoes.
+
+A POSTMAN enters through the creaking iron gate on an old bicycle. He leans the cycle against the wall and pulls a thick, red-stamped sealed envelope from his leather satchel.
+
+POSTMAN
+Notice for the family of late Harjit Singh. Needs a signature.
+
+Amar rises quickly, eyes darting toward the inner verandah.
+
+AMAR
+(hushed)
+Give it here. Don't shout.
+
+Amar signs the postman's slip with a stubby pencil. The postman nods and pedals away. 
+
+Amar turns the letter over. The red seal reads: "DEBT LIQUIDATION TRIBUNAL - FINAL DEMAND". His breath catches. His hands tremble as he slips the envelope deep into his coat pocket.
+
+Behind him, MOTHER (60), frail but with piercing, watchful eyes, steps out onto the threshold holding a brass cup of warm milk.
+
+MOTHER
+Who was at the gate at dawn, Amar?
+
+AMAR
+(forcing a calm smile)
+Just the water inspector, Mother. Checking the canal roster. Nothing for you to worry about.
+
+She stares at his closed coat pocket. Her eyes narrow, but she says nothing.
+
+
+SCENE 2: INT. FAMILY HEARTH & KITCHEN - AFTERNOON
+
+Sunlight slants through smoke drifting from a clay stove. Utensils clink on low shelves.
+
+KABIR (24), dressed in clean, modern denim and sleek leather jacket, sits impatiently on a low wooden stool, scrolling through his phone.
+
+Mother stirs lentils in a black iron pan.
+
+The door creaks open. The elder son, Amar, enters carrying a bundle of dry firewood. He leans the wood against the hearth. His coat is draped over his arm, the red-stamped letter still lodged in the inner lining.
+
+KABIR
+You took your time, elder brother. I have a bus to catch to the provincial capital at five.
+
+AMAR
+The canal silt took three hours to shovel. Sit and eat first, Kabir.
+
+KABIR
+I didn't travel six hundred kilometers to eat lentils, Amar. The agent in the city needs the property papers signed by noon tomorrow. If we sell the eastern two acres, my overseas visa is cleared. 
+
+Mother stops stirring. The wooden ladle hangs still in her hand.
+
+MOTHER
+The eastern parcel was cleared by your grandfather's hands before either of you drew breath. It stays with the hearth.
+
+KABIR
+(agitated)
+Grandfather is gone! This soil pays nothing! Amar, give me the registry ledger from the iron trunk. You promised we would divide fairly.
+
+Amar clutches his coat tightly to his ribs, feeling the sharp corners of the eviction letter.
+
+AMAR
+(low, strained)
+We don't sell this month, Kabir. The market is low. Wait until harvest.
+
+KABIR
+You always stall! You want to keep me tethered to this mud just because you gave up on your own life! 
+
+Kabir kicks the stool back and storms toward the inner corridor.
+
+
+SCENE 3: EXT. THE DRY CANAL & ANCESTRAL GROVE - SUNSET
+
+The golden evening light bathes an old banyan tree by the dry irrigation canal. 
+
+Amar stands near the tree, staring at the cracked earth. 
+
+Footsteps crunch on dry leaves. Kabir approaches, duffel bag slung over his shoulder, ready to abandon the homestead.
+
+KABIR
+Tell me where Father kept the land deed, Amar. Or I swear by Mother, I will file for partition in court on Monday.
+
+Amar doesn't turn around. Slowly, he reaches into his coat pocket and pulls out the crumpled, red-stamped letter. 
+
+He turns and extends it toward his younger brother.
+
+AMAR
+Take it. Read what your half of the land is worth.
+
+Kabir snatches the paper with an indignant scoff. As his eyes scan the legal seals and the colossal debt figure accrued over seven years of hospital loans, his face drains of color.
+
+KABIR
+(whispering)
+Thirty-four lakhs? Since when?
+
+AMAR
+Since Father lay in the intensive care ward for fourteen months. I paid the interest by pawning my wedding ring and taking third-shift transport contracts.
+
+Kabir looks from the letter to Amar's calloused hands, then to his worn-out shoes.
+
+KABIR
+Why did you carry this alone? You made me look like a thief in front of Mother.
+
+AMAR
+Because you were supposed to be the one who flew, Kabir. If Mother knew the house was mortgaged, her heart would stop before nightfall.
+
+The two brothers stand in the quiet twilight. The wind rustles through the dry leaves. Kabir slowly folds the paper, but this time, he tucks it into his own chest pocket.
+
+KABIR
+We sell nothing. Call the transport depot. I am not boarding that bus tonight.`
+  }
+];

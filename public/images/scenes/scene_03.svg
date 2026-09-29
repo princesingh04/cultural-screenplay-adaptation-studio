@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="100%" height="100%">
+  <defs>
+    <linearGradient id="twilightSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="45%" stop-color="#6b21a8"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+    <linearGradient id="duskGround" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1c1917"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Twilight Sky Gradient -->
+  <rect width="1280" height="720" fill="url(#twilightSky)"/>
+
+  <!-- Ancient Banyan Tree (Bohar) Silhouette -->
+  <path d="M 120 720 L 140 380 Q 80 200 240 120 Q 420 80 480 240 L 460 380 L 480 720 Z" fill="#0f172a"/>
+  <!-- Hanging Roots -->
+  <line x1="220" y1="220" x2="210" y2="720" stroke="#0f172a" stroke-width="6"/>
+  <line x1="320" y1="240" x2="330" y2="720" stroke="#0f172a" stroke-width="4"/>
+  <line x1="410" y1="210" x2="400" y2="720" stroke="#0f172a" stroke-width="5"/>
+
+  <!-- Dry Canal Bank Siphon Silhouette -->
+  <path d="M 0 540 Q 640 600 1280 520 L 1280 720 L 0 720 Z" fill="url(#duskGround)"/>
+
+  <!-- Blazing Setting Sun Disk -->
+  <circle cx="820" cy="460" r="75" fill="#facc15" opacity="0.85"/>
+
+  <!-- Fraternal Embrace Silhouette (Amar & Kabir) -->
+  <!-- Amar (Left) with Turban -->
+  <circle cx="760" cy="410" r="26" fill="#09090b"/> <!-- Turban -->
+  <path d="M 730 440 L 790 440 L 805 600 L 720 600 Z" fill="#09090b"/>
+
+  <!-- Kabir (Right) Head on Amar's shoulder, weeping -->
+  <circle cx="800" cy="430" r="22" fill="#09090b"/>
+  <path d="M 780 455 L 835 455 L 845 600 L 775 600 Z" fill="#09090b"/>
+
+  <!-- Arms clasped around each other -->
+  <path d="M 750 470 Q 820 460 810 500" stroke="#09090b" stroke-width="12" fill="none"/>
+  <path d="M 820 480 Q 760 480 760 520" stroke="#09090b" stroke-width="10" fill="none"/>
+
+  <!-- Glowing Tribunal Mortgage Paper between them -->
+  <polygon points="775,490 805,485 808,515 778,520" fill="#fef08a" stroke="#ef4444" stroke-width="2"/>
+
+  <!-- Discarded Travel Duffel Bag on Earth -->
+  <ellipse cx="880" cy="610" rx="35" ry="18" fill="#1c1917" stroke="#475569" stroke-width="2"/>
+
+  <!-- Cinematic Framing Text Overlay -->
+  <rect x="40" y="40" width="410" height="56" rx="8" fill="#0f172a" fill-opacity="0.85" stroke="#334155"/>
+  <text x="60" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">SCENE 3: EXT. DRY CANAL & BANYAN GROVE</text>
+  <text x="60" y="88" font-family="monospace" font-size="11" fill="#f97316">TWILIGHT SUNSET • RECONCILIATION • SHARED DEBT</text>
+</svg>

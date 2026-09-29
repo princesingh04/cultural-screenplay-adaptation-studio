@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="60%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#fdba74"/>
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <linearGradient id="mistGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky & Dawn Glow -->
+  <rect width="1280" height="720" fill="url(#skyGrad)"/>
+
+  <!-- Background Haveli Walls -->
+  <rect x="100" y="240" width="1080" height="340" fill="#9a3412" opacity="0.85"/>
+  <rect x="220" y="180" width="240" height="400" fill="#7c2d12"/>
+  
+  <!-- Arched Deori Gateway -->
+  <path d="M 260 580 L 260 300 Q 340 220 420 300 L 420 580 Z" fill="#1e1b4b"/>
+  <!-- Bebe in Doorway Silhouette with glowing brass cup -->
+  <circle cx="340" cy="380" r="16" fill="#fef08a" opacity="0.9"/>
+  <path d="M 324 396 Q 340 370 356 396 L 360 480 L 320 480 Z" fill="#ca8a04"/>
+  <circle cx="355" cy="425" r="5" fill="#facc15"/>
+
+  <!-- Brick Courtyard Floor -->
+  <rect x="0" y="520" width="1280" height="200" fill="url(#groundGrad)"/>
+
+  <!-- Wooden Charpai Cot -->
+  <rect x="750" y="560" width="360" height="35" rx="5" fill="#b45309"/>
+  <rect x="760" y="595" width="16" height="50" fill="#78350f"/>
+  <rect x="1080" y="595" width="16" height="50" fill="#78350f"/>
+  <line x1="770" y1="575" x2="1090" y2="575" stroke="#fde047" stroke-width="4" stroke-dasharray="8,6"/>
+
+  <!-- Amar Seated Figure -->
+  <circle cx="830" cy="460" r="22" fill="#c2410c"/> <!-- Turban -->
+  <path d="M 810 485 Q 830 470 850 485 L 860 580 L 800 580 Z" fill="#e2e8f0"/> <!-- Kurta -->
+  <rect x="815" y="495" width="30" height="45" fill="#78350f"/> <!-- Waistcoat -->
+  <!-- Red Stamped Envelope in hand -->
+  <rect x="850" y="525" width="22" height="15" rx="2" fill="#ef4444"/>
+
+  <!-- Cycle & Postman Silhouette near boundary -->
+  <circle cx="160" cy="560" r="40" fill="none" stroke="#64748b" stroke-width="4"/>
+  <circle cx="90" cy="560" r="40" fill="none" stroke="#64748b" stroke-width="4"/>
+  <line x1="90" y1="560" x2="130" y2="520" stroke="#64748b" stroke-width="4"/>
+  <line x1="160" y1="560" x2="130" y2="520" stroke="#64748b" stroke-width="4"/>
+  <line x1="130" y1="520" x2="150" y2="490" stroke="#64748b" stroke-width="4"/>
+
+  <!-- Morning Mist Layers -->
+  <rect x="0" y="440" width="1280" height="140" fill="url(#mistGrad)"/>
+  <rect x="0" y="540" width="1280" height="180" fill="url(#mistGrad)"/>
+
+  <!-- Cinematic Framing Text Overlay -->
+  <rect x="40" y="40" width="380" height="56" rx="8" fill="#0f172a" fill-opacity="0.85" stroke="#334155"/>
+  <text x="60" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">SCENE 1: EXT. HOMESTEAD COURTYARD</text>
+  <text x="60" y="88" font-family="monospace" font-size="11" fill="#fb923c">DAWN BLUE HOUR • MIST • AMAR CONCEALS NOTICE</text>
+</svg>

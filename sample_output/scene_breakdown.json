@@ -1,0 +1,94 @@
+{
+  "project_title": "The Ancestral Deed",
+  "adapted_culture": "Majhi (Central Punjab)",
+  "dialect": "Majhi Punjabi",
+  "milieu": "rural",
+  "writing_script": "romanized",
+  "scenes": [
+    {
+      "scene_id": "SC01",
+      "scene_number": 1,
+      "heading": "EXT. HOMESTEAD COURTYARD - EARLY MORNING",
+      "location_id": "LOC_COURTYARD",
+      "time": "early morning",
+      "weather": "heavy winter mist (kohrra)",
+      "mood": "Restless dread masking routine silence",
+      "dramatic_purpose": "Amar receives the eviction notice and conceals it from his mother to protect family peace",
+      "characters": ["CHAR_AMAR", "CHAR_POSTMAN", "CHAR_BEBE"],
+      "costume_ids": ["COST_AMAR_01", "COST_POSTMAN_01", "COST_BEBE_01"],
+      "props_in": ["PROP_DEED_LETTER", "PROP_BRASS_CUP"],
+      "props_out": ["PROP_DEED_LETTER"],
+      "emotional_change": "Amar moves from quiet work routine to suffocating panic, hiding the financial debt in his waistcoat",
+      "continuity_warnings": []
+    },
+    {
+      "scene_id": "SC02",
+      "scene_number": 2,
+      "heading": "INT. FAMILY HEARTH & KITCHEN - AFTERNOON",
+      "location_id": "LOC_KITCHEN_HEARTH",
+      "time": "afternoon",
+      "weather": "sunlight through woodsmoke",
+      "mood": "Simmering fraternal conflict colliding with matriarchal sanctity",
+      "dramatic_purpose": "Kabir demands liquidation of ancestral acreage for city visa; Bebe defends the soil; Amar stays silent",
+      "characters": ["CHAR_KABIR", "CHAR_BEBE", "CHAR_AMAR"],
+      "costume_ids": ["COST_KABIR_01", "COST_BEBE_01", "COST_AMAR_01"],
+      "props_in": ["PROP_FIREWOOD_BUNDLE", "PROP_DEED_LETTER"],
+      "props_out": ["PROP_DEED_LETTER"],
+      "emotional_change": "Kabir erupts in accusations of stagnation; Amar absorbs insults rather than break his mother's heart",
+      "continuity_warnings": []
+    },
+    {
+      "scene_id": "SC03",
+      "scene_number": 3,
+      "heading": "EXT. THE DRY CANAL & ANCESTRAL GROVE - SUNSET",
+      "location_id": "LOC_DRY_CANAL",
+      "time": "sunset",
+      "weather": "cold twilight breeze, orange-indigo sky",
+      "mood": "Tragic revelation dissolving into tearful fraternity and shared redemption",
+      "dramatic_purpose": "Amar reveals the ₹34 Lakh medical debt notice; Kabir renounces his departure to stand with his brother",
+      "characters": ["CHAR_AMAR", "CHAR_KABIR"],
+      "costume_ids": ["COST_AMAR_01", "COST_KABIR_01"],
+      "props_in": ["PROP_DEED_LETTER", "PROP_DUFFEL_BAG"],
+      "props_out": [],
+      "emotional_change": "From bitter fratricidal hostility to tearful remorse and united determination to plow ancestral soil",
+      "continuity_warnings": []
+    }
+  ],
+  "canonical_characters": [
+    {
+      "id": "CHAR_AMAR",
+      "name": "Amarjit Singh",
+      "aliases": ["Amar", "the elder son", "elder brother", "A. Singh"],
+      "age": 32,
+      "role": "Eldest Son / Caretaker of Homestead",
+      "personality": "Stoic, dutiful, carries debt in secret",
+      "assigned_costume": "COST_AMAR_01"
+    },
+    {
+      "id": "CHAR_BEBE",
+      "name": "Gurmeet Kaur (Bebe)",
+      "aliases": ["Mother", "the matriarch", "Mrs. Singh", "Bebe"],
+      "age": 62,
+      "role": "Matriarch / Anchor of Family Hearth",
+      "personality": "Intuitive, speaks with sacred authority",
+      "assigned_costume": "COST_BEBE_01"
+    },
+    {
+      "id": "CHAR_KABIR",
+      "name": "Kabir Singh",
+      "aliases": ["Kabir", "younger brother", "the younger son"],
+      "age": 24,
+      "role": "Younger Son / Ambitious City Emigrant",
+      "personality": "Rebellious, impatient, hides vulnerability",
+      "assigned_costume": "COST_KABIR_01"
+    }
+  ],
+  "props_inventory": [
+    {
+      "id": "PROP_DEED_LETTER",
+      "name": "Tribunal Eviction Notice Envelope",
+      "cultural_equivalent": "Urdu stamp paper land intiqal / Kurki notice",
+      "flow": ["SC01", "SC02", "SC03"]
+    }
+  ]
+}
