@@ -44,6 +44,9 @@ export const VisualBibleStage: React.FC<VisualBibleStageProps> = ({
     setIsRegenerating(true);
     let generatedImageUrl: string | undefined;
 
+    const storedTogetherKey = typeof window !== 'undefined' ? localStorage.getItem('together_api_key') || '' : '';
+    const storedGeminiKey = typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') || '' : '';
+
     try {
       const res = await fetch('/api/generate-image', {
         method: 'POST',
@@ -51,6 +54,8 @@ export const VisualBibleStage: React.FC<VisualBibleStageProps> = ({
         body: JSON.stringify({
           prompt: customPrompt,
           aspectRatio: activeTab === 'keyframes' ? '16:9' : '3:4',
+          togetherApiKey: storedTogetherKey,
+          userApiKey: storedGeminiKey,
         }),
       });
       const data = await res.json();
