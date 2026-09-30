@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^2.24.0",
     "jspdf": "^4.2.1",
     "jszip": "^3.10.2",
     "lucide-react": "^1.48.0",

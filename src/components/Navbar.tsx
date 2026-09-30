@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Download, ShieldCheck } from 'lucide-react';
+import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Download, ShieldCheck, Key } from 'lucide-react';
 import { ScreenplayProject } from '@/types';
 import { getCulturalProfile } from '@/data/culturalProfiles';
 
@@ -10,6 +10,8 @@ interface NavbarProps {
   setCurrentStage: (stage: number) => void;
   project: ScreenplayProject;
   activeContradictionsCount: number;
+  onOpenApiSettings?: () => void;
+  hasApiKey?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,6 +19,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   setCurrentStage,
   project,
   activeContradictionsCount,
+  onOpenApiSettings,
+  hasApiKey = false,
 }) => {
   const profile = getCulturalProfile(project.selectedCultureId);
 
@@ -50,8 +54,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Continuity & Health Indicators */}
-          <div className="flex items-center space-x-3 text-xs">
+          {/* Continuity & Health Indicators & API Settings */}
+          <div className="flex items-center space-x-2.5 text-xs">
             {activeContradictionsCount === 0 ? (
               <div className="flex items-center space-x-1.5 px-2.5 py-1 bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 rounded-md font-mono text-[11px]">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -64,10 +68,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             )}
 
-            <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-zinc-400 rounded-md font-mono text-[11px]">
-              <ShieldCheck className="w-3 h-3 text-zinc-400" />
-              <span>{project.characters.length} Canonical IDs</span>
-            </div>
+            {onOpenApiSettings && (
+              <button
+                onClick={onOpenApiSettings}
+                className="flex items-center space-x-1.5 px-2.5 py-1 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-zinc-100 rounded-md font-mono text-[11px] transition-colors"
+                title="Configure Gemini API Key"
+              >
+                <Key className={`w-3 h-3 ${hasApiKey ? 'text-emerald-400' : 'text-zinc-400'}`} />
+                <span>{hasApiKey ? 'API Active' : 'API Key'}</span>
+              </button>
+            )}
           </div>
         </div>
 

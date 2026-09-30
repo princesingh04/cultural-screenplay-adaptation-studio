@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { UploadStage } from '@/components/UploadStage';
 import { SceneBreakdownStage } from '@/components/SceneBreakdownStage';
 import { SideBySideEditorStage } from '@/components/SideBySideEditorStage';
 import { VisualBibleStage } from '@/components/VisualBibleStage';
 import { ExportStage } from '@/components/ExportStage';
+import { ApiSettingsModal } from '@/components/ApiSettingsModal';
 import { SAMPLE_SCREENPLAYS } from '@/data/sampleScreenplays';
 import { extractScreenplayToProject } from '@/services/extractor';
 import { ScreenplayProject } from '@/types';
@@ -24,6 +25,16 @@ export default function Home() {
   });
 
   const [currentStage, setCurrentStage] = useState<number>(1);
+  const [isApiModalOpen, setIsApiModalOpen] = useState<boolean>(false);
+  const [apiKey, setApiKey] = useState<string>('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('gemini_api_key') || '';
+      setApiKey(stored);
+    }
+  }, []);
+
   const contradictions = runContinuityAudit(project);
 
   return (
@@ -34,6 +45,8 @@ export default function Home() {
         setCurrentStage={setCurrentStage}
         project={project}
         activeContradictionsCount={contradictions.length}
+        onOpenApiSettings={() => setIsApiModalOpen(true)}
+        hasApiKey={Boolean(apiKey)}
       />
 
       {/* Main Studio Viewport */}
@@ -89,6 +102,13 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* In-App API Key Modal */}
+      <ApiSettingsModal
+        isOpen={isApiModalOpen}
+        onClose={() => setIsApiModalOpen(false)}
+        onApiKeySaved={key => setApiKey(key)}
+      />
     </div>
   );
 }
