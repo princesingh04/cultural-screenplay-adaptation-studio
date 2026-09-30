@@ -40,63 +40,83 @@ export const VisualBibleStage: React.FC<VisualBibleStageProps> = ({
     setRegenModalOpen(true);
   };
 
-  const handleExecuteRegenerate = () => {
+  const handleExecuteRegenerate = async () => {
     setIsRegenerating(true);
-    setTimeout(() => {
-      setProject(prev => {
-        if (activeTab === 'characters') {
-          return {
-            ...prev,
-            characters: prev.characters.map(c =>
-              c.id === selectedAsset.id
-                ? {
-                    ...c,
-                    visualSpec: {
-                      ...c.visualSpec,
-                      promptText: customPrompt,
-                      lockedSeed: customSeed,
-                    },
-                  }
-                : c
-            ),
-          };
-        } else if (activeTab === 'costumes') {
-          return {
-            ...prev,
-            costumes: prev.costumes.map(c =>
-              c.id === selectedAsset.id
-                ? {
-                    ...c,
-                    visualSpec: {
-                      ...c.visualSpec,
-                      promptText: customPrompt,
-                      lockedSeed: customSeed,
-                    },
-                  }
-                : c
-            ),
-          };
-        } else {
-          return {
-            ...prev,
-            scenes: prev.scenes.map(s =>
-              s.sceneId === selectedAsset.sceneId
-                ? {
-                    ...s,
-                    keyframeSpec: {
-                      ...s.keyframeSpec,
-                      promptText: customPrompt,
-                      lockedSeed: customSeed,
-                    },
-                  }
-                : s
-            ),
-          };
-        }
+    let generatedImageUrl: string | undefined;
+
+    try {
+      const res = await fetch('/api/generate-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: customPrompt,
+          aspectRatio: activeTab === 'keyframes' ? '16:9' : '3:4',
+        }),
       });
-      setIsRegenerating(false);
-      setRegenModalOpen(false);
-    }, 600);
+      const data = await res.json();
+      if (data.success && data.imageUrl) {
+        generatedImageUrl = data.imageUrl;
+      }
+    } catch (err) {
+      console.warn('Live image generation failed, preserving approved visual:', err);
+    }
+
+    setProject(prev => {
+      if (activeTab === 'characters') {
+        return {
+          ...prev,
+          characters: prev.characters.map(c =>
+            c.id === selectedAsset.id
+              ? {
+                  ...c,
+                  visualSpec: {
+                    ...c.visualSpec,
+                    imageUrl: generatedImageUrl || c.visualSpec.imageUrl,
+                    promptText: customPrompt,
+                    lockedSeed: customSeed,
+                  },
+                }
+              : c
+          ),
+        };
+      } else if (activeTab === 'costumes') {
+        return {
+          ...prev,
+          costumes: prev.costumes.map(c =>
+            c.id === selectedAsset.id
+              ? {
+                  ...c,
+                  visualSpec: {
+                    ...c.visualSpec,
+                    imageUrl: generatedImageUrl || c.visualSpec.imageUrl,
+                    promptText: customPrompt,
+                    lockedSeed: customSeed,
+                  },
+                }
+              : c
+          ),
+        };
+      } else {
+        return {
+          ...prev,
+          scenes: prev.scenes.map(s =>
+            s.sceneId === selectedAsset.sceneId
+              ? {
+                  ...s,
+                  keyframeSpec: {
+                    ...s.keyframeSpec,
+                    imageUrl: generatedImageUrl || s.keyframeSpec.imageUrl,
+                    promptText: customPrompt,
+                    lockedSeed: customSeed,
+                  },
+                }
+              : s
+          ),
+        };
+      }
+    });
+    setIsRegenerating(false);
+    setRegenModalOpen(false);
   };
 
   const copyToClipboard = (text: string) => {
