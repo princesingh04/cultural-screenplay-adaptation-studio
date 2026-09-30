@@ -103,24 +103,51 @@ export const UploadStage: React.FC<UploadStageProps> = ({
     }
   };
 
-  const handleStartExtraction = () => {
+  const handleStartExtraction = async () => {
     setIsExtracting(true);
-    setTimeout(() => {
-      const activeTitle = uploadedFileName
-        ? uploadedFileName.split('.')[0]
-        : SAMPLE_SCREENPLAYS.find(s => s.id === selectedSampleId)?.title || 'Culturally Adapted Screenplay';
 
-      const updatedProject = extractScreenplayToProject(
-        scriptText,
-        activeTitle,
-        selectedCultureId,
-        selectedSetting,
-        outputScript
-      );
-      setProject(updatedProject);
-      setIsExtracting(false);
-      onProceed();
-    }, 450);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+
+    try {
+      const res = await fetch('/api/adapt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          scriptText,
+          cultureId: selectedCultureId,
+          setting: selectedSetting,
+          outputScript,
+        }),
+      });
+      clearTimeout(timeoutId);
+      const data = await res.json();
+      if (data.success && data.project) {
+        setProject(data.project);
+        setIsExtracting(false);
+        onProceed();
+        return;
+      }
+    } catch (err) {
+      // Timeout or offline fallback
+    }
+
+    // High-fidelity deterministic extraction fallback
+    const activeTitle = uploadedFileName
+      ? uploadedFileName.split('.')[0]
+      : SAMPLE_SCREENPLAYS.find(s => s.id === selectedSampleId)?.title || 'Culturally Adapted Screenplay';
+
+    const updatedProject = extractScreenplayToProject(
+      scriptText,
+      activeTitle,
+      selectedCultureId,
+      selectedSetting,
+      outputScript
+    );
+    setProject(updatedProject);
+    setIsExtracting(false);
+    onProceed();
   };
 
   return (

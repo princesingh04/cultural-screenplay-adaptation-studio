@@ -156,7 +156,7 @@ Instructions:
 }`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.8-flash',
       contents: [
         { role: 'user', parts: [{ text: `${systemPrompt}\n\nHere is the Screenplay to adapt:\n${scriptText}` }] },
       ],
