@@ -4,15 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { ScreenplayProject, ScriptDialogueLine } from '@/types';
 import { getCulturalProfile } from '@/data/culturalProfiles';
 import {
-  Volume2,
-  VolumeX,
   Play,
   Pause,
-  Sparkles,
-  Sliders,
-  CheckCircle2,
   Activity,
-  Layers,
   Radio,
 } from 'lucide-react';
 
@@ -33,13 +27,6 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [pitch, setPitch] = useState<number>(profile.audioCadence.vocalPitch);
   const [rate, setRate] = useState<number>(profile.audioCadence.speechRate);
-  const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !('speechSynthesis' in window)) {
-      setSpeechSynthesisSupported(false);
-    }
-  }, []);
 
   const handlePlayVoice = (line: ScriptDialogueLine) => {
     setSelectedLine(line);
@@ -57,9 +44,8 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
 
       window.speechSynthesis.speak(utterance);
     } else {
-      // Mock playback simulation
       setIsPlaying(true);
-      setTimeout(() => setIsPlaying(false), 2500);
+      setTimeout(() => setIsPlaying(false), 2000);
     }
   };
 
@@ -73,46 +59,39 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
   const currentScene = project.scenes[selectedSceneIndex] || project.scenes[0];
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 space-y-6 shadow-xl animate-fadeIn">
-      {/* Stage Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+    <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 space-y-5">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-zinc-800">
         <div>
-          <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
-              AUDIO CADENCE & DIALECT AUDITION
-            </span>
-            <span className="text-xs text-slate-400 font-mono">Web Speech Studio</span>
-          </div>
-          <h2 className="text-xl font-bold text-white mt-1">Regional Dialect Audition Stage</h2>
-          <p className="text-xs text-slate-300">
-            Preview cadence, regional tone markers, and phonetic rhythm before production voice recording.
+          <h2 className="text-base font-semibold text-zinc-100">Regional Dialect Audition</h2>
+          <p className="text-xs text-zinc-400 mt-0.5">
+            Test regional cadence, phonetics, and vocal pacing for actor rehearsals.
           </p>
         </div>
 
-        {/* Live Cadence Badge */}
-        <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-amber-400">
-          <Activity className={`w-3.5 h-3.5 ${isPlaying ? 'text-amber-400 animate-pulse' : 'text-slate-500'}`} />
+        <div className="flex items-center space-x-2 text-xs font-mono text-zinc-400">
+          <Activity className={`w-3.5 h-3.5 ${isPlaying ? 'text-zinc-100 animate-pulse' : 'text-zinc-600'}`} />
           <span>Pitch: {pitch.toFixed(2)}x</span>
           <span>•</span>
           <span>Tempo: {rate.toFixed(2)}x</span>
         </div>
       </div>
 
-      {/* Cadence Specs Bar */}
-      <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+      {/* Cadence Parameters */}
+      <div className="p-3 bg-zinc-950 rounded-lg border border-zinc-800 text-xs grid grid-cols-1 md:grid-cols-3 gap-3">
         <div>
-          <span className="text-slate-400 font-semibold block mb-0.5">Cadence Profile:</span>
-          <span className="text-slate-200">{profile.audioCadence.speechRhythm}</span>
+          <span className="text-zinc-500 font-mono text-[11px] block">Rhythm:</span>
+          <span className="text-zinc-300 text-[11px]">{profile.audioCadence.speechRhythm}</span>
         </div>
         <div>
-          <span className="text-slate-400 font-semibold block mb-0.5">Modulation Pattern:</span>
-          <span className="text-slate-200">{profile.audioCadence.pitchModulation}</span>
+          <span className="text-zinc-500 font-mono text-[11px] block">Modulation:</span>
+          <span className="text-zinc-300 text-[11px]">{profile.audioCadence.pitchModulation}</span>
         </div>
         <div>
-          <span className="text-slate-400 font-semibold block mb-0.5">Key Phonetic Markers:</span>
+          <span className="text-zinc-500 font-mono text-[11px] block">Phonetic Markers:</span>
           <div className="flex flex-wrap gap-1 mt-0.5">
             {profile.audioCadence.phoneticMarkers.map((m, i) => (
-              <span key={i} className="text-[10px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">
+              <span key={i} className="text-[10px] font-mono px-1.5 py-0.5 bg-zinc-900 text-zinc-400 rounded">
                 {m}
               </span>
             ))}
@@ -120,69 +99,61 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
         </div>
       </div>
 
-      {/* Active Audio Player Visualizer Box */}
-      <div className="p-6 bg-gradient-to-r from-slate-950 via-amber-950/20 to-slate-950 border border-amber-500/30 rounded-2xl space-y-4">
-        <div className="flex items-center justify-between">
+      {/* Player Display */}
+      <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-xl space-y-4">
+        <div className="flex items-center justify-between text-xs font-mono">
           <div className="flex items-center space-x-2">
-            <Radio className={`w-4 h-4 ${isPlaying ? 'text-rose-500 animate-ping' : 'text-amber-400'}`} />
-            <span className="text-xs font-mono font-bold text-amber-300 uppercase">
-              Now Auditioning: {selectedLine.characterName}
-            </span>
+            <Radio className={`w-3.5 h-3.5 ${isPlaying ? 'text-emerald-400 animate-pulse' : 'text-zinc-600'}`} />
+            <span className="font-semibold text-zinc-300">{selectedLine.characterName}</span>
           </div>
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">
-            Tone: {selectedLine.toneMarker}
-          </span>
+          <span className="text-zinc-500">{selectedLine.toneMarker}</span>
         </div>
 
-        {/* Spoken Text Quote */}
-        <div className="font-serif text-lg text-white font-medium pl-4 border-l-2 border-amber-400">
+        <div className="font-serif text-base text-zinc-100 pl-3 border-l-2 border-zinc-700">
           &quot;{selectedLine.adaptedText}&quot;
         </div>
-        <div className="text-xs font-mono text-slate-400 pl-4">
-          Phonetic Track: &quot;{selectedLine.phoneticTransliteration}&quot;
+        <div className="text-[11px] font-mono text-zinc-500 pl-3">
+          Phonetic: &quot;{selectedLine.phoneticTransliteration}&quot;
         </div>
 
-        {/* Animated Waveform Visualizer */}
-        <div className="h-10 flex items-center justify-center space-x-1 py-2">
-          {Array.from({ length: 32 }).map((_, i) => (
+        {/* Minimalist Waveform */}
+        <div className="h-6 flex items-center justify-center space-x-1 py-1">
+          {Array.from({ length: 28 }).map((_, i) => (
             <div
               key={i}
-              className={`w-1.5 rounded-full transition-all duration-150 ${
-                isPlaying
-                  ? 'bg-gradient-to-t from-amber-500 to-orange-400'
-                  : 'bg-slate-800 h-2'
+              className={`w-1 rounded-full transition-all duration-150 ${
+                isPlaying ? 'bg-zinc-300' : 'bg-zinc-800 h-1.5'
               }`}
               style={{
-                height: isPlaying ? `${Math.max(6, Math.sin(i * 0.4) * 28 + Math.random() * 12)}px` : '4px',
+                height: isPlaying ? `${Math.max(4, Math.sin(i * 0.5) * 20 + Math.random() * 8)}px` : '3px',
               }}
             />
           ))}
         </div>
 
-        {/* Player Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-          <div className="flex items-center space-x-3">
+        {/* Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-1 text-xs">
+          <div>
             {isPlaying ? (
               <button
                 onClick={handleStopVoice}
-                className="px-5 py-2.5 bg-rose-500 hover:bg-rose-400 text-white rounded-xl text-xs font-bold flex items-center space-x-2 shadow-lg shadow-rose-500/20 transition-all"
+                className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg font-medium flex items-center space-x-1.5 transition-colors"
               >
-                <Pause className="w-4 h-4" />
-                <span>Stop Playback</span>
+                <Pause className="w-3.5 h-3.5" />
+                <span>Stop</span>
               </button>
             ) : (
               <button
                 onClick={() => handlePlayVoice(selectedLine)}
-                className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 rounded-xl text-xs font-bold flex items-center space-x-2 shadow-lg shadow-amber-500/20 transition-all"
+                className="px-4 py-2 bg-zinc-100 hover:bg-white text-zinc-950 rounded-lg font-semibold flex items-center space-x-1.5 transition-colors"
               >
-                <Play className="w-4 h-4 fill-slate-950" />
-                <span>Audition Voice Line</span>
+                <Play className="w-3.5 h-3.5 fill-zinc-950" />
+                <span>Play Audition</span>
               </button>
             )}
           </div>
 
-          {/* Sliders for Pitch and Rate */}
-          <div className="flex items-center space-x-4 text-xs text-slate-400">
+          <div className="flex items-center space-x-4 text-zinc-400 font-mono text-[11px]">
             <div className="flex items-center space-x-2">
               <span>Pitch:</span>
               <input
@@ -192,7 +163,7 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
                 step="0.05"
                 value={pitch}
                 onChange={e => setPitch(Number(e.target.value))}
-                className="w-20 accent-amber-500"
+                className="w-16 accent-zinc-400"
               />
             </div>
             <div className="flex items-center space-x-2">
@@ -204,38 +175,34 @@ export const AudioAuditionStage: React.FC<AudioAuditionStageProps> = ({
                 step="0.05"
                 value={rate}
                 onChange={e => setRate(Number(e.target.value))}
-                className="w-20 accent-amber-500"
+                className="w-16 accent-zinc-400"
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Dialogue Line Selector Grid */}
-      <div className="space-y-3">
-        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-          Select Line to Audition from {currentScene.heading.split('-')[0]}:
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      {/* Line Selector */}
+      <div className="space-y-2">
+        <span className="text-[11px] font-mono text-zinc-500 uppercase block">Select Line to Audition:</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
           {currentScene.adaptedScreenplayLines.map(line => {
             const isSelected = selectedLine.id === line.id;
             return (
               <button
                 key={line.id}
                 onClick={() => handlePlayVoice(line)}
-                className={`text-left p-3.5 rounded-xl border transition-all flex flex-col justify-between space-y-2 ${
+                className={`text-left p-3 rounded-lg border transition-colors flex flex-col justify-between space-y-1.5 ${
                   isSelected
-                    ? 'bg-amber-500/10 border-amber-500/50 shadow-md shadow-amber-500/5'
-                    : 'bg-slate-950/60 border-slate-800 hover:bg-slate-950'
+                    ? 'bg-zinc-800 border-zinc-600 text-zinc-100'
+                    : 'bg-zinc-950 border-zinc-800/80 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-xs text-amber-400 font-mono">{line.characterName}</span>
-                  <span className="text-[10px] text-slate-400 font-medium px-2 py-0.5 bg-slate-900 rounded">
-                    {line.toneMarker}
-                  </span>
+                <div className="flex items-center justify-between font-mono text-[11px]">
+                  <span className="font-semibold text-zinc-300">{line.characterName}</span>
+                  <span className="text-zinc-500">{line.toneMarker}</span>
                 </div>
-                <div className="font-serif text-xs text-slate-200 line-clamp-2">
+                <div className="font-serif text-xs text-zinc-200 line-clamp-1">
                   &quot;{line.adaptedText}&quot;
                 </div>
               </button>

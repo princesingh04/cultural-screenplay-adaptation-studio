@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans selection:bg-zinc-800 selection:text-zinc-100">
       {/* Studio Header Bar */}
       <Navbar
         currentStage={currentStage}
@@ -45,7 +45,7 @@ export default function Home() {
       />
 
       {/* Main Studio Viewport */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
         {currentStage === 1 && (
           <UploadStage
             project={project}
@@ -80,7 +80,7 @@ export default function Home() {
         )}
 
         {currentStage === 5 && (
-          <div className="space-y-8">
+          <div className="space-y-6">
             <AudioAuditionStage
               project={project}
               activeLine={auditionLine}
@@ -93,18 +93,14 @@ export default function Home() {
         )}
       </main>
 
-      {/* Studio Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      {/* Clean Studio Footer */}
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-4 text-xs text-zinc-500 font-mono">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div>
-            Cultural Screenplay & Visual Adaptation Studio • OTT AI Director Engineering Assignment
+            Dialect Studio • Screenplay & Visual Adaptation Pipeline
           </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-amber-400/90 font-medium">Safe Autonomy</span>
-            <span>•</span>
-            <span>Deterministic Continuity Engine</span>
-            <span>•</span>
-            <span>Production Grade</span>
+          <div className="text-zinc-600 text-[11px]">
+            Canonical Entity Deduplication • Cross-Scene Continuity • Seed-Locked Visual Bible
           </div>
         </div>
       </footer>

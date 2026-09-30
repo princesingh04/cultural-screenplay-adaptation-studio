@@ -10,13 +10,10 @@ import {
   MapPin,
   Compass,
   Scroll,
-  Sparkles,
   ArrowRight,
-  CheckCircle,
-  Building,
-  Shirt,
-  Volume2,
+  Check,
   RefreshCw,
+  Info,
 } from 'lucide-react';
 
 interface UploadStageProps {
@@ -58,110 +55,87 @@ export const UploadStage: React.FC<UploadStageProps> = ({
       setProject(updatedProject);
       setIsExtracting(false);
       onProceed();
-    }, 600);
+    }, 450);
   };
 
   return (
-    <div className="space-y-8 animate-fadeIn">
-      {/* Hero Studio Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-slate-800 p-8 shadow-2xl">
-        <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Agentic Cultural Transcreation Engine</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
-            Cultural Screenplay & Visual Adaptation Studio
-          </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Recreate screenplays inside an exact Indian dialect, kinship structure, and vernacular visual world.
-            Maintains strict canonical identity, cross-scene prop continuity, and outputs a complete production bible.
+    <div className="space-y-6">
+      {/* Workbench Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
+        <div>
+          <h1 className="text-xl font-semibold text-zinc-100 tracking-tight">Source Script & Dialect Configuration</h1>
+          <p className="text-xs text-zinc-400 mt-0.5">
+            Input a screenplay to extract canonical entities, verify cross-scene continuity, and transcreate into regional vernacular.
           </p>
         </div>
 
-        {/* Quick Sample Selector */}
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Quick Load:</span>
+        {/* Quick sample loader */}
+        <div className="flex items-center space-x-2">
+          <span className="text-xs text-zinc-500 font-mono">Sample:</span>
           {SAMPLE_SCREENPLAYS.map(sample => (
             <button
               key={sample.id}
               onClick={() => handleLoadSample(sample.id)}
-              className="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-amber-600/20 text-slate-200 hover:text-amber-300 border border-slate-700 hover:border-amber-500/50 transition-all flex items-center space-x-1.5"
+              className="px-2.5 py-1.5 rounded-md text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-colors flex items-center space-x-1.5"
             >
-              <FileText className="w-3.5 h-3.5 text-amber-400" />
-              <span>{sample.title} ({sample.scenesCount} Scenes)</span>
+              <FileText className="w-3 h-3 text-zinc-400" />
+              <span>{sample.title}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Main Configuration Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Column: Screenplay Input Editor */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-6 flex flex-col h-full shadow-lg">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center space-x-2">
-                <FileText className="w-5 h-5 text-amber-400" />
-                <h2 className="text-base font-semibold text-white">Source Screenplay (Neutral)</h2>
-              </div>
-              <span className="text-xs text-slate-400 font-mono">
-                {scriptText.split(/\n\s*\n/).filter(Boolean).length} paragraphs • Standard format
-              </span>
-            </div>
+      {/* Main Two-Column Workbench */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left Column: Screenplay Textarea */}
+        <div className="lg:col-span-7 flex flex-col bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden">
+          <div className="px-4 py-3 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between text-xs">
+            <span className="font-semibold text-zinc-300 font-mono">SOURCE SCREENPLAY</span>
+            <span className="text-zinc-500 font-mono text-[11px]">
+              {scriptText.split(/\n\s*\n/).filter(Boolean).length} paragraphs • Standard Format
+            </span>
+          </div>
 
-            <div className="mt-4 flex-1">
-              <textarea
-                value={scriptText}
-                onChange={e => setScriptText(e.target.value)}
-                placeholder="Paste or write standard screenplay scenes here..."
-                rows={18}
-                className="w-full h-[460px] p-4 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-200 font-mono text-xs sm:text-sm leading-relaxed resize-none focus:outline-none focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/60 selection:bg-amber-500/30 scrollbar-thin scrollbar-thumb-slate-800"
-              />
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span>Supports standard screenplay formatting (Scene Headings, Dialogue, Action)</span>
-              <span className="text-amber-400 font-medium">Includes sample characters & props</span>
-            </div>
+          <div className="p-4 flex-1">
+            <textarea
+              value={scriptText}
+              onChange={e => setScriptText(e.target.value)}
+              placeholder="Paste or write screenplay here..."
+              rows={22}
+              className="w-full h-[520px] p-4 bg-zinc-950 border border-zinc-800 rounded-lg text-zinc-200 font-mono text-xs sm:text-[13px] leading-relaxed resize-none focus:outline-none focus:border-zinc-500 selection:bg-zinc-700 scrollbar-thin scrollbar-thumb-zinc-800"
+            />
           </div>
         </div>
 
-        {/* Right Column: Cultural Dialect & Setting Settings */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-6 shadow-lg space-y-6">
-            <div className="flex items-center space-x-2 pb-4 border-b border-slate-800">
-              <Compass className="w-5 h-5 text-amber-400" />
-              <h2 className="text-base font-semibold text-white">Target Cultural & Dialect Setting</h2>
-            </div>
-
-            {/* Dialect Selector */}
+        {/* Right Column: Dialect & Cultural Controls */}
+        <div className="lg:col-span-5 space-y-5">
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 space-y-5">
+            {/* Dialect Selection */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center justify-between">
-                <span>Exact Culture / Dialect</span>
-                <span className="text-amber-400 font-normal">Precision Required</span>
+              <label className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block font-mono">
+                Target Dialect & Culture
               </label>
-              <div className="grid grid-cols-1 gap-2">
+              <div className="space-y-1.5">
                 {CULTURAL_PROFILES.map(cp => {
                   const isSelected = selectedCultureId === cp.id;
                   return (
                     <button
                       key={cp.id}
                       onClick={() => setSelectedCultureId(cp.id)}
-                      className={`text-left p-3 rounded-xl border transition-all flex items-start justify-between ${
+                      className={`w-full text-left p-3 rounded-lg border transition-colors flex items-center justify-between ${
                         isSelected
-                          ? 'bg-amber-500/10 border-amber-500/60 text-white shadow-md shadow-amber-500/5'
-                          : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-950'
+                          ? 'bg-zinc-800/90 border-zinc-600 text-zinc-100'
+                          : 'bg-zinc-950/70 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                       }`}
                     >
                       <div>
-                        <div className="font-semibold text-sm flex items-center space-x-2">
+                        <div className="font-medium text-xs text-zinc-200 flex items-center space-x-1.5">
                           <span>{cp.name}</span>
-                          {isSelected && <CheckCircle className="w-4 h-4 text-amber-400" />}
+                          {isSelected && <Check className="w-3.5 h-3.5 text-zinc-200" />}
                         </div>
-                        <div className="text-xs text-slate-400 mt-0.5">{cp.subRegion}</div>
+                        <div className="text-[11px] text-zinc-500 mt-0.5">{cp.subRegion}</div>
                       </div>
-                      <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-800/80 text-amber-300 border border-slate-700">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 text-zinc-400 border border-zinc-800">
                         {cp.dialect}
                       </span>
                     </button>
@@ -170,21 +144,20 @@ export const UploadStage: React.FC<UploadStageProps> = ({
               </div>
             </div>
 
-            {/* Setting: Rural vs Urban */}
+            {/* Geographic Setting */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-                <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span>Geographic Milieu & Setting</span>
+              <label className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block font-mono">
+                Geographic Setting
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {(['rural', 'semi-urban', 'urban'] as SettingType[]).map(type => (
                   <button
                     key={type}
                     onClick={() => setSelectedSetting(type)}
-                    className={`py-2 px-3 rounded-xl text-xs font-medium capitalize border transition-all text-center ${
+                    className={`py-2 rounded-lg text-xs font-medium capitalize border transition-colors ${
                       selectedSetting === type
-                        ? 'bg-amber-500/15 border-amber-500/60 text-amber-300'
-                        : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-950'
+                        ? 'bg-zinc-800 border-zinc-600 text-zinc-100 font-semibold'
+                        : 'bg-zinc-950/70 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-300'
                     }`}
                   >
                     {type}
@@ -193,25 +166,24 @@ export const UploadStage: React.FC<UploadStageProps> = ({
               </div>
             </div>
 
-            {/* Script Format */}
+            {/* Output Writing Script */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-                <Scroll className="w-3.5 h-3.5 text-amber-400" />
-                <span>Screenplay Writing Script</span>
+              <label className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block font-mono">
+                Writing Script
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { id: 'romanized', label: 'Romanized (Phonetic)' },
-                  { id: 'gurmukhi', label: 'Gurmukhi (Regional)' },
-                  { id: 'devanagari', label: 'Devanagari (Script)' },
+                  { id: 'romanized', label: 'Romanized' },
+                  { id: 'gurmukhi', label: 'Gurmukhi' },
+                  { id: 'devanagari', label: 'Devanagari' },
                 ].map(opt => (
                   <button
                     key={opt.id}
                     onClick={() => setOutputScript(opt.id as OutputScript)}
-                    className={`py-2 px-2 rounded-xl text-xs font-medium border transition-all text-center truncate ${
+                    className={`py-2 rounded-lg text-xs font-medium border transition-colors ${
                       outputScript === opt.id
-                        ? 'bg-amber-500/15 border-amber-500/60 text-amber-300'
-                        : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-950'
+                        ? 'bg-zinc-800 border-zinc-600 text-zinc-100 font-semibold'
+                        : 'bg-zinc-950/70 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-300'
                     }`}
                   >
                     {opt.label}
@@ -221,51 +193,35 @@ export const UploadStage: React.FC<UploadStageProps> = ({
             </div>
           </div>
 
-          {/* Cultural Profile Highlights Card */}
-          <div className="bg-slate-900/60 rounded-2xl border border-slate-800/80 p-5 space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
-              <Building className="w-4 h-4" />
-              <span>Cultural DNA: {activeProfile.name}</span>
+          {/* Cultural Notes Snippet */}
+          <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-4 text-xs space-y-2.5">
+            <div className="flex items-center space-x-1.5 text-zinc-400 font-mono text-[11px]">
+              <Info className="w-3.5 h-3.5" />
+              <span className="font-semibold uppercase">Profile Note</span>
             </div>
-
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800/60">
-                <div className="text-slate-400 font-semibold mb-1 flex items-center space-x-1">
-                  <Shirt className="w-3 h-3 text-amber-400" />
-                  <span>Attire & Textiles</span>
-                </div>
-                <div className="text-slate-200">{activeProfile.visualAesthetics.traditionalFabrics.slice(0, 2).join(', ')}</div>
-              </div>
-
-              <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800/60">
-                <div className="text-slate-400 font-semibold mb-1 flex items-center space-x-1">
-                  <Volume2 className="w-3 h-3 text-amber-400" />
-                  <span>Kinship & Greeting</span>
-                </div>
-                <div className="text-slate-200 truncate">{activeProfile.honorificRules.elderGreeting.split('(')[0]}</div>
-              </div>
-            </div>
-
-            <p className="text-xs text-slate-400 italic">
-              &quot;{activeProfile.adaptationGuidance}&quot;
+            <p className="text-zinc-300 text-[11px] leading-relaxed">
+              {activeProfile.adaptationGuidance}
             </p>
+            <div className="pt-1 text-[11px] text-zinc-500 font-mono">
+              Greeting: <span className="text-zinc-400">{activeProfile.honorificRules.elderGreeting.split('(')[0]}</span>
+            </div>
           </div>
 
-          {/* Action Button: Extract & Normalize */}
+          {/* Action CTA */}
           <button
             onClick={handleStartExtraction}
             disabled={isExtracting || !scriptText.trim()}
-            className="w-full py-4 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-500 via-orange-500 to-rose-600 hover:from-amber-400 hover:via-orange-400 hover:to-rose-500 text-slate-950 shadow-xl shadow-amber-500/20 flex items-center justify-center space-x-2 transition-all transform active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3.5 px-4 rounded-xl font-semibold text-xs bg-zinc-100 hover:bg-white text-zinc-950 border border-zinc-200 transition-colors flex items-center justify-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {isExtracting ? (
               <>
-                <RefreshCw className="w-4 h-4 animate-spin text-slate-950" />
-                <span>Normalizing Canonical Entities & Scenes...</span>
+                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                <span>Normalizing Canonical Entities...</span>
               </>
             ) : (
               <>
-                <span>Extract Scenes & Canonical Entities</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Extract Scenes & Entities</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </>
             )}
           </button>

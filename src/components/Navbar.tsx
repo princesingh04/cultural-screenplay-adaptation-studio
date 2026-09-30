@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Volume2, Download, Sparkles } from 'lucide-react';
+import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Volume2, ShieldCheck } from 'lucide-react';
 import { ScreenplayProject } from '@/types';
 import { getCulturalProfile } from '@/data/culturalProfiles';
 
@@ -21,64 +21,58 @@ export const Navbar: React.FC<NavbarProps> = ({
   const profile = getCulturalProfile(project.selectedCultureId);
 
   const stages = [
-    { id: 1, label: '1. Script & Dialect', icon: BookOpen },
-    { id: 2, label: '2. Scene Breakdown & Normalization', icon: Layers },
-    { id: 3, label: '3. Side-by-Side Adaptation', icon: Film },
-    { id: 4, label: '4. Visual Production Bible', icon: ImageIcon },
-    { id: 5, label: '5. Audio Audition & Export', icon: Volume2 },
+    { id: 1, label: 'Source & Dialect', icon: BookOpen },
+    { id: 2, label: 'Scene Breakdown', icon: Layers },
+    { id: 3, label: 'Side-by-Side Adaptation', icon: Film },
+    { id: 4, label: 'Visual Bible', icon: ImageIcon },
+    { id: 5, label: 'Audition & Export', icon: Volume2 },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo & Brand */}
+    <header className="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Top brand & status row */}
+        <div className="flex items-center justify-between h-14">
+          {/* Brand */}
           <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-amber-500 via-orange-600 to-rose-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
-              <Film className="w-5 h-5 text-white" />
+            <div className="h-8 w-8 rounded-lg bg-zinc-900 border border-zinc-700/80 flex items-center justify-center text-zinc-100 font-mono text-xs font-bold">
+              DS
             </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-amber-200 via-orange-300 to-rose-200 bg-clip-text text-transparent">
-                  CULTURAL ADAPTATION STUDIO
-                </span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full">
-                  OTT AI Director
-                </span>
-              </div>
-              <div className="text-xs text-slate-400 flex items-center space-x-2">
-                <span>{project.title}</span>
-                <span>•</span>
-                <span className="text-amber-400 font-medium">{profile.name}</span>
-                <span>•</span>
-                <span className="capitalize">{project.selectedSetting}</span>
-              </div>
+            <div className="flex items-center space-x-2.5">
+              <span className="font-semibold text-sm tracking-tight text-zinc-100">
+                DIALECT STUDIO
+              </span>
+              <span className="text-zinc-600">/</span>
+              <span className="text-xs text-zinc-400 font-mono">{project.title}</span>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] rounded bg-zinc-900 text-zinc-300 border border-zinc-800">
+                {profile.dialect}
+              </span>
             </div>
           </div>
 
-          {/* Continuity Status Badge */}
-          <div className="hidden md:flex items-center space-x-3">
+          {/* Continuity & Health Indicators */}
+          <div className="flex items-center space-x-3 text-xs">
             {activeContradictionsCount === 0 ? (
-              <div className="flex items-center space-x-1.5 px-3 py-1 bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 rounded-full text-xs font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Continuity Verified (0 Contradictions)</span>
+              <div className="flex items-center space-x-1.5 px-2.5 py-1 bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 rounded-md font-mono text-[11px]">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Continuity Verified</span>
               </div>
             ) : (
-              <div className="flex items-center space-x-1.5 px-3 py-1 bg-rose-950/60 border border-rose-500/30 text-rose-400 rounded-full text-xs font-medium animate-pulse">
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>{activeContradictionsCount} Continuity Issues</span>
+              <div className="flex items-center space-x-1.5 px-2.5 py-1 bg-amber-950/40 border border-amber-500/30 text-amber-300 rounded-md font-mono text-[11px]">
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+                <span>{activeContradictionsCount} Contradiction{activeContradictionsCount > 1 ? 's' : ''}</span>
               </div>
             )}
 
-            <div className="flex items-center space-x-1.5 px-3 py-1 bg-slate-900 border border-slate-700 text-slate-300 rounded-full text-xs font-mono">
-              <Sparkles className="w-3 h-3 text-amber-400" />
-              <span>4 Canonical Entities</span>
+            <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-zinc-400 rounded-md font-mono text-[11px]">
+              <ShieldCheck className="w-3 h-3 text-zinc-400" />
+              <span>{project.characters.length} Canonical IDs</span>
             </div>
           </div>
         </div>
 
-        {/* Studio Pipeline Navigation Tabs */}
-        <div className="flex space-x-1 border-t border-slate-800/80 overflow-x-auto py-2 scrollbar-none">
+        {/* Studio Pipeline Stages */}
+        <nav className="flex space-x-1 overflow-x-auto py-1.5 border-t border-zinc-900 scrollbar-none">
           {stages.map(stage => {
             const Icon = stage.icon;
             const isActive = currentStage === stage.id;
@@ -86,18 +80,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={stage.id}
                 onClick={() => setCurrentStage(stage.id)}
-                className={`flex items-center space-x-2 px-3 py-1.5 text-xs font-medium rounded-lg transition-all whitespace-nowrap ${
+                className={`flex items-center space-x-2 px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
                   isActive
-                    ? 'bg-amber-500/15 border border-amber-500/40 text-amber-300 shadow-sm shadow-amber-500/10'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                    ? 'bg-zinc-800 text-zinc-100 font-semibold'
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-amber-400' : 'text-slate-500'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-zinc-200' : 'text-zinc-500'}`} />
                 <span>{stage.label}</span>
               </button>
             );
           })}
-        </div>
+        </nav>
       </div>
     </header>
   );
