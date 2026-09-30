@@ -11,21 +11,18 @@ import {
   Check,
   Edit3,
   Languages,
-  Volume2,
 } from 'lucide-react';
 
 interface SideBySideEditorStageProps {
   project: ScreenplayProject;
   setProject: React.Dispatch<React.SetStateAction<ScreenplayProject>>;
   onProceed: () => void;
-  onAuditionLine?: (line: ScriptDialogueLine) => void;
 }
 
 export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
   project,
   setProject,
   onProceed,
-  onAuditionLine,
 }) => {
   const profile = getCulturalProfile(project.selectedCultureId);
   const [selectedSceneIndex, setSelectedSceneIndex] = useState<number>(0);
@@ -72,9 +69,9 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
       {/* Action Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
         <div>
-          <h1 className="text-xl font-semibold text-zinc-100 tracking-tight">Side-by-Side Screenplay Studio</h1>
+          <h1 className="text-xl font-semibold text-zinc-100 tracking-tight">Adapted Screenplay Comparison</h1>
           <p className="text-xs text-zinc-400 mt-0.5">
-            Compare source vs. culturally adapted lines with linguistic rationale, tone markers, and regional cadence.
+            Side-by-side comparison of source and culturally adapted scenes with linguistic rationale and tone markers.
           </p>
         </div>
 
@@ -101,7 +98,7 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
             onClick={onProceed}
             className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-white text-zinc-950 flex items-center space-x-1.5 transition-colors"
           >
-            <span>Proceed to Visual Bible</span>
+            <span>Proceed to Visual Gallery</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -204,30 +201,19 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
                       </span>
                     </div>
 
-                    <div className="flex items-center space-x-1.5">
-                      {onAuditionLine && (
-                        <button
-                          onClick={() => onAuditionLine(line)}
-                          title="Audition voice"
-                          className="p-1 rounded text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 transition-colors"
-                        >
-                          <Volume2 className="w-3.5 h-3.5" />
-                        </button>
-                      )}
-                      <button
-                        onClick={() => {
-                          if (isEditing) {
-                            handleSaveEdit(line.id);
-                          } else {
-                            setEditingLineId(line.id);
-                            setEditText(line.adaptedText);
-                          }
-                        }}
-                        className="p-1 rounded text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 transition-colors"
-                      >
-                        {isEditing ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Edit3 className="w-3.5 h-3.5" />}
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => {
+                        if (isEditing) {
+                          handleSaveEdit(line.id);
+                        } else {
+                          setEditingLineId(line.id);
+                          setEditText(line.adaptedText);
+                        }
+                      }}
+                      className="p-1 rounded text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 transition-colors"
+                    >
+                      {isEditing ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Edit3 className="w-3.5 h-3.5" />}
+                    </button>
                   </div>
 
                   {/* Non-verbal gesture */}

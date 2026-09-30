@@ -120,7 +120,7 @@ export const VisualBibleStage: React.FC<VisualBibleStageProps> = ({
           onClick={onProceed}
           className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-white text-zinc-950 flex items-center space-x-1.5 transition-colors"
         >
-          <span>Audition & Export Hub</span>
+          <span>Continuity & Export Hub</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>

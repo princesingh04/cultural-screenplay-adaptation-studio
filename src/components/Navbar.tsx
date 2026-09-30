@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Volume2, ShieldCheck } from 'lucide-react';
+import { Film, CheckCircle2, AlertTriangle, Layers, BookOpen, Image as ImageIcon, Download, ShieldCheck } from 'lucide-react';
 import { ScreenplayProject } from '@/types';
 import { getCulturalProfile } from '@/data/culturalProfiles';
 
@@ -21,11 +21,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   const profile = getCulturalProfile(project.selectedCultureId);
 
   const stages = [
-    { id: 1, label: 'Source & Dialect', icon: BookOpen },
-    { id: 2, label: 'Scene Breakdown', icon: Layers },
-    { id: 3, label: 'Side-by-Side Adaptation', icon: Film },
-    { id: 4, label: 'Visual Bible', icon: ImageIcon },
-    { id: 5, label: 'Audition & Export', icon: Volume2 },
+    { id: 1, label: '1. Upload & Culture', icon: BookOpen },
+    { id: 2, label: '2. Scene Extraction', icon: Layers },
+    { id: 3, label: '3. Screenplay Comparison', icon: Film },
+    { id: 4, label: '4. Visual Gallery', icon: ImageIcon },
+    { id: 5, label: '5. Continuity & Export', icon: Download },
   ];
 
   return (
@@ -36,15 +36,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Brand */}
           <div className="flex items-center space-x-3">
             <div className="h-8 w-8 rounded-lg bg-zinc-900 border border-zinc-700/80 flex items-center justify-center text-zinc-100 font-mono text-xs font-bold">
-              DS
+              CS
             </div>
             <div className="flex items-center space-x-2.5">
               <span className="font-semibold text-sm tracking-tight text-zinc-100">
-                DIALECT STUDIO
+                CULTURAL ADAPTATION STUDIO
               </span>
               <span className="text-zinc-600">/</span>
               <span className="text-xs text-zinc-400 font-mono">{project.title}</span>
-              <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] rounded bg-zinc-900 text-zinc-300 border border-zinc-800">
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] rounded bg-zinc-900 text-zinc-300 border border-zinc-800 font-mono">
                 {profile.dialect}
               </span>
             </div>
