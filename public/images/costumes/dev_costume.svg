@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="devBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#devBg)"/>
+  
+  <!-- Subtle Arid Background Rays -->
+  <polygon points="300,100 0,800 600,800" fill="#78350f" opacity="0.15"/>
+
+  <!-- Dev Body: Indigo Mechanic Shirt & Red Gamchha -->
+  <path d="M 140 800 L 170 560 L 220 500 L 380 500 L 430 560 L 460 800 Z" fill="#1e3a8a"/>
+  <!-- Rolled Sleeves with Grease Stains -->
+  <rect x="180" y="580" width="40" height="120" rx="10" fill="#d97706" opacity="0.6"/>
+  <!-- Red Gamchha Drape -->
+  <path d="M 220 500 Q 300 570 380 500 L 370 550 Q 300 620 230 550 Z" fill="#dc2626"/>
+
+  <!-- Neck & Strong Jawline -->
+  <rect x="260" y="380" width="80" height="130" fill="#d97706"/>
+  <path d="M 200 300 Q 200 480 300 480 Q 400 480 400 300 Z" fill="#f59e0b"/>
+  
+  <!-- Weathered Stubble & Hardened Eyes -->
+  <path d="M 230 380 Q 300 460 370 380 Z" fill="#78350f" opacity="0.7"/>
+  <ellipse cx="260" cy="310" rx="16" ry="10" fill="#1c1917"/>
+  <ellipse cx="340" cy="310" rx="16" ry="10" fill="#1c1917"/>
+  <circle cx="262" cy="310" r="4" fill="#ffffff"/>
+  <circle cx="342" cy="310" r="4" fill="#ffffff"/>
+
+  <!-- Short Dark Hair -->
+  <path d="M 190 280 Q 300 160 410 280 Q 400 230 300 210 Q 200 230 190 280 Z" fill="#0f172a"/>
+
+  <!-- Stamped Badge -->
+  <rect x="40" y="40" width="160" height="30" rx="6" fill="#000" opacity="0.8"/>
+  <text x="120" y="60" font-family="monospace" font-size="12" fill="#38bdf8" text-anchor="middle">CHAR_DEV (34)</text>
+</svg>

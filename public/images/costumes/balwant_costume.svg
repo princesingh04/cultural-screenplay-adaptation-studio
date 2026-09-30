@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="balBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#balBg)"/>
+
+  <!-- Crisp Starched White Linen Kurta -->
+  <path d="M 120 800 L 160 520 L 220 460 L 380 460 L 440 520 L 480 800 Z" fill="#f8fafc"/>
+  <line x1="300" y1="460" x2="300" y2="760" stroke="#cbd5e1" stroke-width="4"/>
+
+  <!-- Silver Bamboo Cane Head in Foreground -->
+  <circle cx="480" cy="620" r="32" fill="#e2e8f0"/>
+  <line x1="480" y1="620" x2="480" y2="800" stroke="#94a3b8" stroke-width="14"/>
+
+  <!-- Fleshy Face, Silver Trimmed Hair -->
+  <rect x="250" y="340" width="100" height="130" fill="#fdba74"/>
+  <path d="M 180 260 Q 180 460 300 460 Q 420 460 420 260 Z" fill="#fed7aa"/>
+  
+  <!-- Heavy Aristocratic Twirled Mustache -->
+  <path d="M 230 380 Q 300 420 370 380 Q 420 360 400 400 Q 300 460 200 400 Z" fill="#475569"/>
+
+  <!-- Polarized Aviator Sunglasses (Hiding cold eyes) -->
+  <rect x="210" y="270" width="80" height="50" rx="10" fill="#09090b" stroke="#ca8a04" stroke-width="4"/>
+  <rect x="310" y="270" width="80" height="50" rx="10" fill="#09090b" stroke="#ca8a04" stroke-width="4"/>
+  <line x1="290" y1="285" x2="310" y2="285" stroke="#ca8a04" stroke-width="4"/>
+
+  <!-- Slick Silver-Grey Hair -->
+  <path d="M 180 260 Q 300 150 420 260 Q 410 200 300 180 Q 190 200 180 260 Z" fill="#94a3b8"/>
+
+  <rect x="40" y="40" width="220" height="30" rx="6" fill="#000" opacity="0.8"/>
+  <text x="150" y="60" font-family="monospace" font-size="12" fill="#facc15" text-anchor="middle">CHAUDHARY BALWANT (58)</text>
+</svg>
