@@ -28,6 +28,7 @@ export const UploadStage: React.FC<UploadStageProps> = ({
   setProject,
   onProceed,
 }) => {
+  const [selectedSampleId, setSelectedSampleId] = useState<string>('inheritance_deed');
   const [selectedCultureId, setSelectedCultureId] = useState<string>(project.selectedCultureId);
   const [selectedSetting, setSelectedSetting] = useState<SettingType>(project.selectedSetting);
   const [outputScript, setOutputScript] = useState<OutputScript>(project.outputScript);
@@ -43,9 +44,17 @@ export const UploadStage: React.FC<UploadStageProps> = ({
   const handleLoadSample = (sampleId: string) => {
     const sample = SAMPLE_SCREENPLAYS.find(s => s.id === sampleId);
     if (sample) {
+      setSelectedSampleId(sample.id);
       setScriptText(sample.rawText);
       setUploadedFileName(null);
       setUploadError(null);
+      if (sample.id === 'runaway_dowry') {
+        setSelectedCultureId('haryanvi');
+      } else if (sample.id === 'drought_well') {
+        setSelectedCultureId('bhojpuri_bihar');
+      } else {
+        setSelectedCultureId('majhi_punjab');
+      }
     }
   };
 
@@ -71,7 +80,18 @@ export const UploadStage: React.FC<UploadStageProps> = ({
       }
 
       setScriptText(data.text);
+      setSelectedSampleId('');
       setUploadedFileName(`${data.filename} (${data.pageCount} page${data.pageCount > 1 ? 's' : ''})`);
+      
+      // Auto-detect dialect hint based on content
+      const lower = data.text.toLowerCase();
+      if (lower.includes('meera') || lower.includes('dowry') || lower.includes('rajan')) {
+        setSelectedCultureId('haryanvi');
+      } else if (lower.includes('balwant') || lower.includes('chaudhary') || lower.includes('drought') || lower.includes('aquifer')) {
+        setSelectedCultureId('bhojpuri_bihar');
+      } else if (lower.includes('amar') || lower.includes('kabir')) {
+        setSelectedCultureId('majhi_punjab');
+      }
     } catch (err: any) {
       console.error(err);
       setUploadError(err.message || 'Error parsing document. Please check the file.');
@@ -86,9 +106,13 @@ export const UploadStage: React.FC<UploadStageProps> = ({
   const handleStartExtraction = () => {
     setIsExtracting(true);
     setTimeout(() => {
+      const activeTitle = uploadedFileName
+        ? uploadedFileName.split('.')[0]
+        : SAMPLE_SCREENPLAYS.find(s => s.id === selectedSampleId)?.title || 'Culturally Adapted Screenplay';
+
       const updatedProject = extractScreenplayToProject(
         scriptText,
-        uploadedFileName ? uploadedFileName.split('.')[0] : 'The Ancestral Deed',
+        activeTitle,
         selectedCultureId,
         selectedSetting,
         outputScript
@@ -140,17 +164,27 @@ export const UploadStage: React.FC<UploadStageProps> = ({
             )}
           </button>
 
-          {/* Quick sample loader */}
-          {SAMPLE_SCREENPLAYS.map(sample => (
-            <button
-              key={sample.id}
-              onClick={() => handleLoadSample(sample.id)}
-              className="px-3 py-1.5 rounded-lg text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 transition-colors flex items-center space-x-1.5"
-            >
-              <FileText className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Load Sample ({sample.scenesCount} Scenes)</span>
-            </button>
-          ))}
+          {/* Quick sample loader: 3 distinct test scripts */}
+          {SAMPLE_SCREENPLAYS.map((sample, idx) => {
+            const isSelected = selectedSampleId === sample.id && !uploadedFileName;
+            return (
+              <button
+                key={sample.id}
+                onClick={() => handleLoadSample(sample.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-all flex items-center space-x-1.5 ${
+                  isSelected
+                    ? 'bg-zinc-800 text-zinc-100 border-zinc-500 shadow-sm'
+                    : 'bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border-zinc-800'
+                }`}
+                title={`${sample.genre} • ${sample.logline}`}
+              >
+                <FileText className={`w-3.5 h-3.5 ${isSelected ? 'text-zinc-200' : 'text-zinc-500'}`} />
+                <span className="truncate max-w-[140px] sm:max-w-none">
+                  {idx + 1}. {sample.title}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -176,6 +210,18 @@ export const UploadStage: React.FC<UploadStageProps> = ({
           <span>{uploadError}</span>
         </div>
       )}
+
+      {/* Test Script Directory Quick Reference */}
+      <div className="flex flex-wrap items-center justify-between text-[11px] text-zinc-500 px-1 font-mono gap-2">
+        <div className="flex items-center space-x-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+          <span>3 Test Scripts loaded: 1. Agrarian Debt • 2. Wedding Trunk • 3. Drought Well</span>
+        </div>
+        <div className="flex items-center space-x-1.5">
+          <span className="text-zinc-600">Sample PDFs:</span>
+          <code className="text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">d:\projects\assignment3\test_scripts\</code>
+        </div>
+      </div>
 
       {/* Main Two-Column Workbench */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">

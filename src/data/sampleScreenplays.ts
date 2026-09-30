@@ -1,6 +1,7 @@
 export interface SampleScreenplayOption {
   id: string;
   title: string;
+  genre: string;
   logline: string;
   scenesCount: number;
   charactersCount: number;
@@ -10,7 +11,8 @@ export interface SampleScreenplayOption {
 export const SAMPLE_SCREENPLAYS: SampleScreenplayOption[] = [
   {
     id: 'inheritance_deed',
-    title: 'The Ancestral Deed (Neutral Source)',
+    title: 'The Ancestral Deed',
+    genre: 'Agrarian Family Drama',
     logline: 'When an eviction notice threatens a multi-generational homestead, the elder brother hides the debt while the ambitious younger brother demands to sell his share.',
     scenesCount: 3,
     charactersCount: 3,
@@ -126,5 +128,198 @@ The two brothers stand in the quiet twilight. The wind rustles through the dry l
 
 KABIR
 We sell nothing. Call the transport depot. I am not boarding that bus tonight.`
+  },
+  {
+    id: 'runaway_dowry',
+    title: 'The Stolen Dowry Trunk',
+    genre: 'Wedding & Clan Honor Drama',
+    logline: 'On the eve of her arranged wedding, a fiercely educated village girl conceals a government appointment letter inside the ancestral dowry trunk, confronting her authoritarian uncle.',
+    scenesCount: 3,
+    charactersCount: 3,
+    rawText: `SCENE 1: INT. ANCESTRAL STORE ROOM - MORNING
+
+Sunlight filters through iron grates onto stacked brass pots and heavy grain bins. 
+
+MEERA (21), slender, wearing an unstitched embroidered bridal lehenga, kneels before a massive iron-bound wooden trunk. 
+
+Her hands tremble as she slips a sealed document into the silk folds at the bottom of the trunk. The envelope header reads: "UNION MEDICAL RECRUITMENT BOARD - OFFICER SELECTION".
+
+Footsteps approach. VIKRAM (27), her cousin and childhood confidant, enters holding a velvet jewelry case.
+
+VIKRAM
+The goldsmith delivered the necklace, Meera. Uncle Rajan wants you to wear it for the welcoming feast.
+
+Meera snaps the heavy trunk lid shut. The brass latch rings sharply.
+
+MEERA
+Tell Uncle to keep his gold in his safe. I won't wear chains disguised as gifts.
+
+VIKRAM
+(stepping closer, noticing the latch)
+What did you just hide in the dowry chest? If Uncle finds out you wrote the civil exam in secret, he will disown both of us before the wedding party arrives.
+
+MEERA
+Let him. My mother died laboring in his cotton gin. I won't spend my life scrubbing brass pots in a stranger's courtyard just to satisfy his clan pride.
+
+Vikram looks at the closed trunk, torn between fraternal loyalty and fear of their patriarch.
+
+
+SCENE 2: EXT. WEDDING MANDAP & COURTYARD - AFTERNOON
+
+Marigold garlands sway in the dry afternoon breeze. Male elders sit on cushioned bolsters smoking hookah.
+
+UNCLE RAJAN (55), barrel-chested, wearing an ornate silk turban and gold rings on four fingers, laughs loudly as he presents the keys of a tractor to the groom's father.
+
+UNCLE RAJAN
+In our clan, daughters leave the threshold like queens! Fifty tolas of gold and the latest diesel tractor. That is the honor of our lineage!
+
+Vikram stands by the pillar, hands clenched, watching Meera emerge from the inner corridor without the ceremonial jewelry. A murmur ripples through the seated village elders.
+
+UNCLE RAJAN
+(voice hardening beneath a forced grin)
+Meera. Where is the heirloom gold necklace your aunt placed in your dowry trunk this morning?
+
+MEERA
+The necklace is in the trunk, Uncle. Alongside the deed of debt you forced my father to sign on his deathbed.
+
+The courtyard falls dead silent. The groom's family freezes. Rajan takes a threatening step toward her.
+
+UNCLE RAJAN
+You insolent girl! You speak like an unbridled stray in front of thirty clans! Go inside before I forget who brought you up!
+
+
+SCENE 3: INT. INNER CEREMONIAL BAITHAK - SUNSET
+
+The red twilight casts long shadows across the ceremonial carpet. 
+
+Uncle Rajan stands over Meera, his arm raised in fury. The heavy brass trunk sits open between them on the floor, its silk lining disturbed.
+
+UNCLE RAJAN
+You dare humiliate this house?! You will sign the marriage registry tonight or I will swear by the clan deity you never step foot in this village again!
+
+Before his hand can strike, Vikram steps directly between them, his hand gripping his uncle's wrist with iron strength.
+
+VIKRAM
+That's enough, Uncle.
+
+UNCLE RAJAN
+(shocked, eyes bulging)
+Vikram? You raise your hand against the head of the house? For an ungrateful girl?
+
+VIKRAM
+I am raising my hand for my sister. Look at what is inside that trunk, Uncle. 
+
+Meera pulls the government appointment order from the trunk and holds it up into the fading sunset light.
+
+MEERA
+First rank in the state medical council, Uncle. The Chief Magistrate signs my posting in the capital on Monday. I do not need your fifty tolas of gold to exist.
+
+Uncle Rajan stares at the official government crest. The patriarchal authority dissolves from his face. Vikram takes Meera's duffel bag from behind the pillar.
+
+VIKRAM
+The car is at the canal road, Meera. You are going to the city.`
+  },
+  {
+    id: 'drought_well',
+    title: 'The Drought Well',
+    genre: 'Resource Conflict & Moral Thriller',
+    logline: 'During the worst summer drought in thirty years, an honest well operator discovers the village chieftain has chained the sole potable well to divert water to his private bottling plant.',
+    scenesCount: 3,
+    charactersCount: 3,
+    rawText: `SCENE 1: EXT. THE DRY COMMONS WELL - NOON
+
+A scorching sun beats down on cracked white earth. The air shimmers with mirages. A crowd of thirty parched villagers with empty brass lotas wait in the dust.
+
+The deep community borewell sits inside a padlocked iron cage. A heavy forged brass padlock clamps the main discharge valve.
+
+DEV (34), a lean mechanic with grease on his forearms and sweat stinging his eyes, adjusts a pressure gauge on the pump housing.
+
+CHAUDHARY BALWANT (58), dressed in crisp white linen, wearing dark sunglasses and holding a heavy silver-tipped bamboo cane, leans against a luxury SUV parked under the only shade tree.
+
+BALWANT
+Tell them the aquifer is dry, Dev. If they panic, they will break the machinery.
+
+DEV
+(low, looking at the crying children in line)
+The water table is fine, Chaudhary. The pressure gauge reads four hundred PSI. Why are you chaining the public tap?
+
+BALWANT
+Because fifty tankers are contracted to the industrial corridor by midnight. The government pays thirty thousand per tanker. Hand me the key to the master valve.
+
+Dev hesitates, feeling the heavy forged iron wrench in his leather tool belt.
+
+BALWANT
+(leaning in, tapping Dev's chest with his cane)
+Remember who paid your sister's hospital bail, mechanic. Give me the key.
+
+Dev looks away, slowly handing the brass key to the landlord. Balwant locks the cage and drives off in a plume of white dust.
+
+
+SCENE 2: INT. COMMUNITY CLINIC & LABORATORY - DUSK
+
+Flickering tube lights hum. Plastic saline bottles hang from rusty stands.
+
+ANANYA (28), a young doctor with ink-stained fingers and tired eyes, examines three test tubes holding murky brown water. 
+
+Dev knocks on the wire-mesh door and enters, wiping his grease-stained hands on a rag.
+
+ANANYA
+Seven more cholera admissions from the lower hamlet in three hours, Dev. What water did you release from the canal canal today?
+
+DEV
+The canal is stagnant mud, Doctor. Chaudhary locked the sweet-water deep well. He's piping twenty thousand liters an hour to the industrial estate.
+
+ANANYA
+(slamming her clipboard down)
+The water in the lower hamlet well has three times the permissible arsenic level! It's poisoning them! If they don't get deep-bore sweet water tonight, three elders won't survive till sunrise.
+
+DEV
+Balwant has armed guards at the gate. If I touch that padlock, he will claim theft and the police will lock me away for ten years.
+
+ANANYA
+(pointing to an unconscious child on the cot)
+Look at that child, Dev. That is your cousin's daughter. Are you a mechanic for machines, or a mechanic for people?
+
+Dev stares at the child's feverish face. His hand slowly tightens around the iron wrench in his pocket.
+
+
+SCENE 3: EXT. THE RESERVOIR & PUMP HOUSE - MIDNIGHT
+
+Silver moonlight turns the water tank into a looming monolith. Crickets chirp in the dry thorn bushes.
+
+Dev sneaks through the perimeter wire, gripping his heavy thirty-six-inch iron pipe wrench.
+
+He reaches the cage. He slots the wrench jaws over the forged brass padlock. He braces his boots against the steel mesh and puts his entire body weight into the lever.
+
+CREAK. The iron shudders.
+
+A harsh spotlight blazes to life. 
+
+Balwant stands twenty paces away, flanked by two burly henchmen carrying wooden lathis.
+
+BALWANT
+Step away from the valve, Dev. I thought you were smarter than your father.
+
+DEV
+My father died drinking canal silt while your grandfather grew sugarcane, Chaudhary. Not tonight.
+
+BALWANT
+(signaling his men)
+Break his knees. Throw him in the dry ditch.
+
+The guards step forward. Dev doesn't run. With a thunderous grunt, he throws his full weight onto the wrench handle.
+
+SNAP! The forged brass padlock fractures in two.
+
+Dev yanks the high-pressure lever. 
+
+A deafening roar echoes through the valley. Pressurized, crystal-clear cold water erupts from the main relief sluice, gushing down the dry stone channel toward the village below.
+
+In the distance, church bells and shouts of joy rise from the village as water reaches the homesteads. 
+
+Dev stands drenched in the gushing torrent, meeting Balwant's furious gaze with quiet, unbreakable resolve.
+
+DEV
+Call the police, Chaudhary. Let them come see the water.`
   }
 ];
