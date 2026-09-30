@@ -87,7 +87,7 @@ export const ApiSettingsModal: React.FC<ApiSettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="bg-zinc-900 border border-zinc-800 max-w-md w-full rounded-xl p-6 space-y-4 shadow-2xl">
+      <div className="bg-zinc-900 border border-zinc-800 max-w-md w-full rounded-xl p-4 sm:p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Key className="w-4 h-4 text-zinc-300" />

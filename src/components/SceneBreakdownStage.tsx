@@ -102,12 +102,12 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center space-x-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setMergeModalOpen(true)}
             className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 flex items-center space-x-1.5 transition-colors"
           >
-            <GitMerge className="w-3.5 h-3.5 text-zinc-400" />
+            <GitMerge className="w-3.5 h-3.5 text-zinc-400 flex-shrink-0" />
             <span>Merge Alias</span>
           </button>
 
@@ -119,7 +119,7 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
                 : 'bg-zinc-900 border-zinc-700 text-zinc-300'
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
+            <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
             <span>{project.approvalStatus.entitiesApproved ? 'Entities Approved' : 'Approve Entities'}</span>
           </button>
 
@@ -128,8 +128,9 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
             disabled={!project.approvalStatus.entitiesApproved}
             className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-white text-zinc-950 flex items-center space-x-1.5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <span>Proceed to Adaptation</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Proceed to Adaptation</span>
+            <span className="inline sm:hidden">Proceed</span>
+            <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
           </button>
         </div>
       </div>
@@ -137,15 +138,15 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
       {/* Contradiction Warning Panel */}
       {auditIssues.length > 0 && (
         <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-4 text-xs space-y-3">
-          <div className="flex items-center justify-between text-amber-300 font-semibold font-mono text-[11px]">
+          <div className="flex items-center justify-between text-amber-300 font-semibold font-mono text-[11px] gap-2">
             <div className="flex items-center space-x-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400" />
+              <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
               <span>CONTINUITY CONTRADICTIONS ({auditIssues.length})</span>
             </div>
-            <span className="text-zinc-500">Must be resolved before visual generation</span>
+            <span className="text-zinc-500 hidden sm:inline">Must be resolved before visual generation</span>
           </div>
           {auditIssues.map(issue => (
-            <div key={issue.id} className="p-3 bg-zinc-950/80 rounded-lg border border-amber-900/40 flex items-center justify-between gap-4">
+            <div key={issue.id} className="p-3 bg-zinc-950/80 rounded-lg border border-amber-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <span className="font-mono text-zinc-400">[{issue.sceneId}]</span>{' '}
                 <span className="text-zinc-200">{issue.description}</span>
@@ -155,7 +156,7 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
               </div>
               <button
                 onClick={() => handleResolveContradiction(issue.id)}
-                className="px-2.5 py-1 bg-zinc-900 hover:bg-zinc-800 text-amber-300 border border-amber-500/30 rounded text-xs font-mono whitespace-nowrap"
+                className="px-2.5 py-1.5 sm:py-1 bg-zinc-900 hover:bg-zinc-800 text-amber-300 border border-amber-500/30 rounded text-xs font-mono whitespace-nowrap self-start sm:self-auto"
               >
                 Auto-Resolve
               </button>
@@ -164,8 +165,8 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
         </div>
       )}
 
-      {/* View Tabs */}
-      <div className="flex border-b border-zinc-800 space-x-6 text-xs">
+      {/* View Tabs - Horizontally scrollable on mobile */}
+      <div className="flex border-b border-zinc-800 space-x-3 sm:space-x-6 text-xs overflow-x-auto scrollbar-none pb-0.5 -mx-3 px-3 sm:mx-0 sm:px-0">
         {[
           { id: 'scenes', label: `Scenes (${project.scenes.length})`, icon: Layers },
           { id: 'characters', label: `Canonical Characters (${project.characters.length})`, icon: Users },
@@ -178,7 +179,7 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`pb-2.5 flex items-center space-x-2 border-b-2 transition-colors font-mono text-xs ${
+              className={`pb-2.5 flex items-center space-x-2 border-b-2 transition-colors font-mono text-xs whitespace-nowrap flex-shrink-0 ${
                 isActive
                   ? 'border-zinc-200 text-zinc-100 font-semibold'
                   : 'border-transparent text-zinc-400 hover:text-zinc-200'
@@ -353,7 +354,7 @@ export const SceneBreakdownStage: React.FC<SceneBreakdownStageProps> = ({
       {/* Deduplication Modal */}
       {mergeModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-zinc-900 border border-zinc-800 max-w-md w-full rounded-xl p-6 space-y-4 shadow-xl">
+          <div className="bg-zinc-900 border border-zinc-800 max-w-md w-full rounded-xl p-4 sm:p-6 space-y-4 shadow-xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-zinc-100">Merge Alias to Canonical Entity</h3>
               <button onClick={() => setMergeModalOpen(false)} className="text-zinc-500 hover:text-zinc-300 text-xs">

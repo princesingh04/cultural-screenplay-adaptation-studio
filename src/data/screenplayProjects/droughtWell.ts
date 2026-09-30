@@ -38,7 +38,6 @@ export function getDroughtWellProject(
         bodyLanguage: 'Working man\'s grounded slouch, carries the weight of a heavy iron pipe wrench in his stride',
         lockedSeed: 441092,
         promptText: `Cinematic 35mm portrait, 34-year-old rural Indian mechanic Devendra, grease-stained hands and forearms, wearing faded blue work shirt, intense moral determination in dark eyes, sun-baked arid landscape in background, photorealistic documentary look, 8k.`,
-        imageUrl: '/images/characters/dev.svg',
       },
     },
     {
@@ -60,7 +59,6 @@ export function getDroughtWellProject(
         bodyLanguage: 'Effortlessly commanding, leans against luxury SUV with contemptuous leisure',
         lockedSeed: 772911,
         promptText: `Cinematic portrait of 58-year-old Indian rural water tycoon Chaudhary Balwant, starched crisp white kurta-pyjama, dark aviator sunglasses, silver-tipped walking stick, harsh desert sunlight, dust devils behind him, 8k.`,
-        imageUrl: '/images/characters/balwant.svg',
       },
     },
     {
@@ -82,7 +80,6 @@ export function getDroughtWellProject(
         bodyLanguage: 'Rapid, energetic, purposeful motions; slams clipboards and points directly to human suffering',
         lockedSeed: 221844,
         promptText: `Cinematic portrait of 28-year-old female doctor in rural Indian clinic, faded cotton saree under white doctor coat, stethoscope on neck, tired determined eyes holding up test tubes of water, fluorescent hospital lighting, 8k.`,
-        imageUrl: '/images/characters/ananya.svg',
       },
     },
   ];
@@ -104,7 +101,6 @@ export function getDroughtWellProject(
       visualSpec: {
         lockedSeed: 441092,
         promptText: `Costume bible turnaround, 34yo Indian mechanic, faded blue work shirt rolled to elbows, dusty trousers with heavy leather tool holster holding a 36-inch pipe wrench, red gamchha, studio white sweep, 8k.`,
-        imageUrl: '/images/costumes/dev_costume.svg',
       },
     },
     {
@@ -123,7 +119,6 @@ export function getDroughtWellProject(
       visualSpec: {
         lockedSeed: 772911,
         promptText: `Costume turnaround sheet, wealthy Indian politician-landlord, spotless white linen kurta-pyjama, dark sunglasses, silver-headed cane, gold watch, hyper-realistic fabric drape, studio lighting, 8k.`,
-        imageUrl: '/images/costumes/balwant_costume.svg',
       },
     },
     {
@@ -142,7 +137,6 @@ export function getDroughtWellProject(
       visualSpec: {
         lockedSeed: 221844,
         promptText: `Costume reference sheet, Indian female doctor in rural government clinic, teal handloom cotton saree, white medical lab coat with stethoscope, clinical documentation lighting, 8k.`,
-        imageUrl: '/images/costumes/ananya_costume.svg',
       },
     },
   ];
@@ -314,7 +308,6 @@ export function getDroughtWellProject(
         culturalAtmosphere: 'Brutal rural water theft; stark economic divide between corporate landlord and parched village laborers',
         promptText: `Cinematic wide shot, EXT. DRY INDIAN VILLAGE COMMONS - NOON. A parched cracked desert landscape. A wealthy landlord in spotless white linen and sunglasses locks a heavy iron chain on a community borewell. A grease-covered Indian mechanic in blue shirt watches with clenched fists. Blinding harsh desert sunlight, dust haze, 8k.`,
         lockedSeed: 441092,
-        imageUrl: '/images/scenes/scene_drought_01.svg',
       },
       continuityWarnings: [],
     },
@@ -407,7 +400,6 @@ export function getDroughtWellProject(
         culturalAtmosphere: 'High moral urgency; medical catastrophe clashing with rural economic extortion',
         promptText: `Cinematic frame, INT. RUSTIC INDIAN PRIMARY HEALTH CENTER - DUSK. A dedicated female doctor in white coat and saree urgently shows a vial of contaminated water to an emotionally shattered Indian mechanic. In the background, hospital cots with patients. Chiaroscuro lighting, emotional depth, 8k.`,
         lockedSeed: 221844,
-        imageUrl: '/images/scenes/scene_drought_02.svg',
       },
       continuityWarnings: [],
     },
@@ -513,7 +505,6 @@ export function getDroughtWellProject(
         culturalAtmosphere: 'Mythic Indian triumph of communal life over privatized greed; the liberation of the commons',
         promptText: `Cinematic wide shot, EXT. WATER RESERVOIR AT MIDNIGHT. A heroic Indian mechanic drenched in a massive fountain of rushing crystal water, holding a heavy pipe wrench under moonlight and stadium halogen lights. Shocked landlord and guards step back in defeat. Deakins cinematography, 35mm film grain, 8k.`,
         lockedSeed: 441094,
-        imageUrl: '/images/scenes/scene_drought_03.svg',
       },
       continuityWarnings: [],
     },

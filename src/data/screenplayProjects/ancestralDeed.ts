@@ -38,7 +38,6 @@ export function getAncestralDeedProject(
         bodyLanguage: 'Broad shoulders carrying weight, grounded posture, reluctant eye contact when withholding truth',
         lockedSeed: 749201,
         promptText: `Cinematic 35mm portrait, 32-year-old North Indian Punjabi farmer Amarjit Singh, weathered face with dignified stoicism, deep expressive dark amber eyes, sun-baked wheat skin, wearing ${profile.visualAesthetics.traditionalFabrics[0]} kurta, golden hour soft natural lighting, photorealistic documentary realism, 8k resolution.`,
-        imageUrl: '/images/characters/amar.webp',
       },
     },
     {
@@ -60,7 +59,6 @@ export function getAncestralDeedProject(
         bodyLanguage: 'Slow, deliberate movements, hands skilled at hearth fire, gaze that commands stillness',
         lockedSeed: 883102,
         promptText: `Cinematic close-up portrait of 62-year-old Indian matriarch, dignified weathered face with profound maternal wisdom, silver hair beneath a soft draped dupatta with subtle Phulkari threadwork, holding a warm brass cup, warm earthen background, Rembrandt lighting, 8k.`,
-        imageUrl: '/images/characters/mother.webp',
       },
     },
     {
@@ -82,7 +80,6 @@ export function getAncestralDeedProject(
         bodyLanguage: 'Brash pacing, aggressive chin tilt, softens into collapsed vulnerability at climax',
         lockedSeed: 334190,
         promptText: `Cinematic full-body shot of 24-year-old modern South Asian youth Kabir, contrast of contemporary denim jacket with regional heritage context, tense defiant posture, duffel bag on shoulder, emotional realization and vulnerability, photorealistic lighting, 8k.`,
-        imageUrl: '/images/characters/kabir.webp',
       },
     },
     {
@@ -104,7 +101,6 @@ export function getAncestralDeedProject(
         bodyLanguage: 'Lean bicycle rider, official posture softened by rural familiarity',
         lockedSeed: 198302,
         promptText: `Cinematic portrait of 52-year-old rural Indian postal deliveryman, wearing khaki postal uniform with brass emblem, resting beside a vintage black bicycle in misty dawn, authentic candid documentary aesthetic, 8k.`,
-        imageUrl: '/images/characters/postman.webp',
       },
     },
   ];
@@ -126,7 +122,6 @@ export function getAncestralDeedProject(
       visualSpec: {
         lockedSeed: 749201,
         promptText: `Full-body costume turn-around sheet, authentic 1990s rural Punjabi farmer wardrobe, unbleached handspun khadi kurta, heavy wool waistcoat with inner buttoned document pocket, ochre turban, leather juttis, textile texture visible in high detail, studio white sweep backdrop, 8k.`,
-        imageUrl: '/images/costumes/amar_costume.webp',
       },
     },
     {
@@ -145,7 +140,6 @@ export function getAncestralDeedProject(
       visualSpec: {
         lockedSeed: 883102,
         promptText: `Costume character bible visual sheet, elderly North Indian matriarch attire, maroon handloom cotton kameez, antique geometric silk-embroidered Phulkari shawl draped with grace, gold nose pin, studio lighting, hyper-realistic fabric weave details, 8k.`,
-        imageUrl: '/images/costumes/bebe_costume.webp',
       },
     },
     {
@@ -164,7 +158,6 @@ export function getAncestralDeedProject(
       visualSpec: {
         lockedSeed: 334190,
         promptText: `Costume reference sheet, early 2000s ambitious Indian young man wardrobe, fitted brown biker jacket over beige knitwear, dark denim, polished urban boots, canvas travel duffel bag at his feet, cinematic character design sheet, 8k.`,
-        imageUrl: '/images/costumes/kabir_costume.webp',
       },
     },
     {
@@ -183,7 +176,6 @@ export function getAncestralDeedProject(
       visualSpec: {
         lockedSeed: 198302,
         promptText: `Costume reference sheet for rural postal carrier, vintage Khaki twill uniform, brass department crest, heavy leather shoulder mailbag with stamped parcels, studio documentation style, 8k.`,
-        imageUrl: '/images/costumes/postman_costume.webp',
       },
     },
   ];
@@ -357,7 +349,6 @@ export function getAncestralDeedProject(
         culturalAtmosphere: 'Deep rural winter; solemn, quiet reverence, heavy emotional weight in the stone and brick',
         promptText: `Cinematic movie scene still, EXT. COURTYARD - EARLY MORNING. An atmospheric high-walled red-brick courtyard shrouded in cold winter mist. In the foreground, 32yo farmer Amar wearing ochre turban and woolen waistcoat clutches a red-sealed document near a woven manji cot. In the background doorway, 62yo matriarch Bebe holding a steaming brass cup looks at him with piercing eyes. 35mm film grain, 8k.`,
         lockedSeed: 749201,
-        imageUrl: '/images/scenes/scene_01.svg',
       },
       continuityWarnings: [],
     },
@@ -475,7 +466,6 @@ export function getAncestralDeedProject(
         culturalAtmosphere: 'High tension in rustic domestic sanctum; collision of westernized youth and feudal ancestral duty',
         promptText: `Cinematic indoor scene, INT. RUSTIC VILLAGE KITCHEN - AFTERNOON. Blue woodsmoke drifts from an earthen clay hearth. A defiant 24yo youth in modern leather jacket angrily confronts his 32yo stoic farmer brother. An elderly matriarch in maroon salwar watches with fierce resolve. Dramatic chiaroscuro lighting, authentic textures, 8k.`,
         lockedSeed: 749202,
-        imageUrl: '/images/scenes/scene_02.svg',
       },
       continuityWarnings: [],
     },
@@ -593,7 +583,6 @@ export function getAncestralDeedProject(
         culturalAtmosphere: 'Raw, emotional fraternal bond; sweeping cinematic poetry of soil, debt, and redemption',
         promptText: `Cinematic wide shot, EXT. CANAL AT SUNSET. Two Indian brothers in emotional reconciliation under an ancient banyan tree. The elder brother in turban and waistcoat embraces his weeping younger brother in leather jacket. Blazing orange and deep indigo twilight sky, dry canal silhouette, 35mm film look, 8k.`,
         lockedSeed: 749203,
-        imageUrl: '/images/scenes/scene_03.svg',
       },
       continuityWarnings: [],
     },

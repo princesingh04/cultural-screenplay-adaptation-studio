@@ -82,21 +82,21 @@ export const ExportStage: React.FC<ExportStageProps> = ({
 
         <button
           onClick={onBackToStudio}
-          className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 rounded-lg text-xs font-medium flex items-center space-x-1.5 transition-colors self-start sm:self-auto"
+          className="w-full sm:w-auto px-3 py-2 sm:py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 rounded-lg text-xs font-medium flex items-center justify-center space-x-1.5 transition-colors"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3.5 h-3.5 flex-shrink-0" />
           <span>Back to Script Comparison</span>
         </button>
       </div>
 
       {/* Continuity Diagnostic Panel (Required by Section 9) */}
-      <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 space-y-4">
-        <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+      <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 sm:p-5 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800 pb-3 gap-1">
           <div className="flex items-center space-x-2">
             {contradictions.length === 0 ? (
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
             ) : (
-              <AlertTriangle className="w-4 h-4 text-amber-400" />
+              <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
             )}
             <span className="text-xs font-mono font-semibold text-zinc-200">
               CROSS-SCENE CONTINUITY AUDIT ({contradictions.length === 0 ? 'ALL CLEAR' : `${contradictions.length} ISSUES`})
@@ -128,32 +128,32 @@ export const ExportStage: React.FC<ExportStageProps> = ({
       </div>
 
       {/* Metrics Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
-        <div className="p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 text-xs font-mono">
+        <div className="p-3 sm:p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
           <span className="text-zinc-500 text-[11px] block">Target Dialect</span>
-          <span className="font-semibold text-zinc-200 mt-0.5 block">{profile.dialect}</span>
+          <span className="font-semibold text-zinc-200 mt-0.5 block truncate">{profile.dialect}</span>
         </div>
 
-        <div className="p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
+        <div className="p-3 sm:p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
           <span className="text-zinc-500 text-[11px] block">Canonical Actors</span>
-          <span className="font-semibold text-zinc-200 mt-0.5 block">{project.characters.length} Normalized</span>
+          <span className="font-semibold text-zinc-200 mt-0.5 block truncate">{project.characters.length} Normalized</span>
         </div>
 
-        <div className="p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
+        <div className="p-3 sm:p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
           <span className="text-zinc-500 text-[11px] block">Continuity Health</span>
           <span className="font-semibold text-emerald-400 mt-0.5 block">100% Passed</span>
         </div>
 
-        <div className="p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
+        <div className="p-3 sm:p-3.5 bg-zinc-900/60 border border-zinc-800 rounded-lg">
           <span className="text-zinc-500 text-[11px] block">Production Assets</span>
-          <span className="font-semibold text-zinc-200 mt-0.5 block">
+          <span className="font-semibold text-zinc-200 mt-0.5 block truncate">
             {project.characters.length + project.costumes.length + project.scenes.length} Specs Locked
           </span>
         </div>
       </div>
 
       {/* Export Options Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* PDF Screenplay */}
         <div className="p-5 bg-zinc-900/50 border border-zinc-800 rounded-xl flex flex-col justify-between space-y-4">
           <div className="space-y-1.5">
@@ -241,16 +241,16 @@ export const ExportStage: React.FC<ExportStageProps> = ({
       </div>
 
       {/* Quick Text Copy */}
-      <div className="p-4 bg-zinc-900/40 border border-zinc-800 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div className="p-3.5 sm:p-4 bg-zinc-900/40 border border-zinc-800 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
         <div>
           <span className="font-semibold text-zinc-300">Quick Text Export</span>
           <p className="text-zinc-500 text-[11px]">Copy the complete adapted screenplay text to clipboard.</p>
         </div>
         <button
           onClick={handleCopyScriptText}
-          className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
+          className="w-full sm:w-auto px-3 py-2 sm:py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 rounded-lg text-xs font-mono flex items-center justify-center space-x-1.5 transition-colors"
         >
-          {copiedScript ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-zinc-400" />}
+          {copiedScript ? <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" /> : <Copy className="w-3.5 h-3.5 text-zinc-400 flex-shrink-0" />}
           <span>{copiedScript ? 'Copied' : 'Copy Script Text'}</span>
         </button>
       </div>

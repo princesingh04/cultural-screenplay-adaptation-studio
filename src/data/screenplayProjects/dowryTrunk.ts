@@ -38,7 +38,6 @@ export function getDowryTrunkProject(
         bodyLanguage: 'Upright, resolute, unbowed before male elders, deliberate and measured movements',
         lockedSeed: 554201,
         promptText: `Cinematic 35mm portrait, 21-year-old North Indian woman Meera, defiant intense gaze, wearing embroidered vermilion bridal lehenga with antique silver borders, intricate henna on hands, warm earthen background, Rembrandt lighting, 8k resolution.`,
-        imageUrl: '/images/characters/meera.jpg',
       },
     },
     {
@@ -60,7 +59,6 @@ export function getDowryTrunkProject(
         bodyLanguage: 'Alert, cautious, shifts from tense subservience to protective barrier shielding Meera',
         lockedSeed: 662190,
         promptText: `Cinematic portrait of 27-year-old North Indian man Vikram, wearing cream handloom cotton kurta with olive Nehru vest, conflicted expression, sharp jawline, cinematic festival lighting in rustic courtyard, photorealistic, 8k.`,
-        imageUrl: '/images/characters/vikram.jpg',
       },
     },
     {
@@ -82,7 +80,6 @@ export function getDowryTrunkProject(
         bodyLanguage: 'Expansive gestures, loud booming presence, sudden physical intimidation when challenged',
         lockedSeed: 881204,
         promptText: `Cinematic close-up portrait of 55-year-old feudal Indian village patriarch Chaudhary Rajan, wearing grand saffron silk turban with emerald brooch, heavy gold rings on fingers, mustache twirled high, authoritative haughty expression, 8k.`,
-        imageUrl: '/images/characters/rajan.jpg',
       },
     },
   ];
@@ -104,7 +101,6 @@ export function getDowryTrunkProject(
       visualSpec: {
         lockedSeed: 554201,
         promptText: `Costume character bible turn-around, young Indian woman in traditional crimson wedding lehenga with heavy antique gold zari work, sheer red veil, subtle rebellious modern boots visible beneath hem, cinematic 8k.`,
-        imageUrl: '/images/costumes/meera_costume.jpg',
       },
     },
     {
@@ -123,7 +119,6 @@ export function getDowryTrunkProject(
       visualSpec: {
         lockedSeed: 662190,
         promptText: `Costume reference sheet, modern Indian festive menswear, off-white linen kurta with olive green Nehru jacket, dark leather shoes, studio white background, 8k.`,
-        imageUrl: '/images/costumes/vikram_costume.jpg',
       },
     },
     {
@@ -142,7 +137,6 @@ export function getDowryTrunkProject(
       visualSpec: {
         lockedSeed: 881204,
         promptText: `Full costume turnaround, wealthy feudal Indian landlord, golden silk kurta, saffron turban, maroon velvet shawl over shoulder, heavy gold rings, studio lighting, hyper-realistic, 8k.`,
-        imageUrl: '/images/costumes/rajan_costume.jpg',
       },
     },
   ];
@@ -314,7 +308,6 @@ export function getDowryTrunkProject(
         culturalAtmosphere: 'Tense rural family conspiracy; clash between feudal wedding dowry and women\'s civil achievement',
         promptText: `Cinematic frame, INT. RUSTIC INDIAN HAVELI STORE ROOM - MORNING. A young defiant Indian bride in rich red silk lehenga kneels over an antique brass-bound wooden chest. A conflicted young man in kurta holds a velvet gold jewelry box. Dramatic chiaroscuro sunbeam through iron grates, 35mm film grain, 8k.`,
         lockedSeed: 554201,
-        imageUrl: '/images/scenes/scene_dowry_01.svg',
       },
       continuityWarnings: [],
     },
@@ -420,7 +413,6 @@ export function getDowryTrunkProject(
         culturalAtmosphere: 'Public panchayat confrontation; shocking breach of traditional female silence in clan court',
         promptText: `Cinematic wide shot, EXT. NORTH INDIAN VILLAGE WEDDING COURTYARD. An opulent wedding mandap decorated with yellow marigolds. A furious landlord in saffron turban confronts a defiant young woman holding an official parchment. Elders smoking hookah look on in shock. Cinematic lighting, Kodachrome style, 8k.`,
         lockedSeed: 881204,
-        imageUrl: '/images/scenes/scene_dowry_02.svg',
       },
       continuityWarnings: [],
     },
@@ -543,7 +535,6 @@ export function getDowryTrunkProject(
         culturalAtmosphere: 'Electrifying liberation of a rural woman breaking the feudal dowry apparatus forever',
         promptText: `Cinematic movie climax frame, INT. HAVELI BAITHAK - SUNSET. A young Indian man intercepts an angry elder's wrist in mid-air. In the foreground, an Indian woman in bridal dress proudly holds up a stamped government certificate. Red sunset light, high contrast, cinematic masterpiece, 8k.`,
         lockedSeed: 554203,
-        imageUrl: '/images/scenes/scene_dowry_03.svg',
       },
       continuityWarnings: [],
     },

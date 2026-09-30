@@ -15,6 +15,9 @@ import {
   FileCheck,
   AlertCircle,
   FileUp,
+  Sparkles,
+  Clock,
+  Loader2,
 } from 'lucide-react';
 
 interface UploadStageProps {
@@ -34,12 +37,20 @@ export const UploadStage: React.FC<UploadStageProps> = ({
   const [outputScript, setOutputScript] = useState<OutputScript>(project.outputScript);
   const [scriptText, setScriptText] = useState<string>(project.sourceScreenplayText);
   const [isExtracting, setIsExtracting] = useState<boolean>(false);
+  const [extractionElapsed, setExtractionElapsed] = useState<number>(0);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const activeProfile = getCulturalProfile(selectedCultureId);
+
+  React.useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
   const handleLoadSample = (sampleId: string) => {
     const sample = SAMPLE_SCREENPLAYS.find(s => s.id === sampleId);
@@ -105,9 +116,16 @@ export const UploadStage: React.FC<UploadStageProps> = ({
 
   const handleStartExtraction = async () => {
     setIsExtracting(true);
+    setExtractionElapsed(0);
+
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setExtractionElapsed(prev => prev + 1);
+    }, 1000);
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    // Allow up to 60s for full LLM screenplay adaptation
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
 
     try {
       const res = await fetch('/api/adapt', {
@@ -124,15 +142,21 @@ export const UploadStage: React.FC<UploadStageProps> = ({
       clearTimeout(timeoutId);
       const data = await res.json();
       if (data.success && data.project) {
+        if (timerRef.current) clearInterval(timerRef.current);
         setProject(data.project);
         setIsExtracting(false);
         onProceed();
         return;
+      } else if (data.error) {
+        console.warn('AI Adaptation API warning:', data.error);
       }
-    } catch (err) {
-      // Timeout or offline fallback
+    } catch (err: any) {
+      console.warn('AI Adaptation API request failed or aborted:', err.message);
+    } finally {
+      clearTimeout(timeoutId);
     }
 
+    if (timerRef.current) clearInterval(timerRef.current);
     // High-fidelity deterministic extraction fallback
     const activeTitle = uploadedFileName
       ? uploadedFileName.split('.')[0]
@@ -161,8 +185,8 @@ export const UploadStage: React.FC<UploadStageProps> = ({
           </p>
         </div>
 
-        {/* Upload & Sample Controls */}
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Upload & Sample Controls - Scrollable ribbon on mobile */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap w-full sm:w-auto scrollbar-none -mx-3 px-3 sm:mx-0 sm:px-0">
           {/* Hidden File Input */}
           <input
             ref={fileInputRef}
@@ -176,7 +200,7 @@ export const UploadStage: React.FC<UploadStageProps> = ({
           <button
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 flex items-center space-x-1.5 transition-colors disabled:opacity-50 flex-shrink-0"
           >
             {isUploading ? (
               <>
@@ -198,7 +222,7 @@ export const UploadStage: React.FC<UploadStageProps> = ({
               <button
                 key={sample.id}
                 onClick={() => handleLoadSample(sample.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-all flex items-center space-x-1.5 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-all flex items-center space-x-1.5 flex-shrink-0 whitespace-nowrap ${
                   isSelected
                     ? 'bg-zinc-800 text-zinc-100 border-zinc-500 shadow-sm'
                     : 'bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border-zinc-800'
@@ -206,7 +230,7 @@ export const UploadStage: React.FC<UploadStageProps> = ({
                 title={`${sample.genre} • ${sample.logline}`}
               >
                 <FileText className={`w-3.5 h-3.5 ${isSelected ? 'text-zinc-200' : 'text-zinc-500'}`} />
-                <span className="truncate max-w-[140px] sm:max-w-none">
+                <span>
                   {idx + 1}. {sample.title}
                 </span>
               </button>
@@ -268,13 +292,13 @@ export const UploadStage: React.FC<UploadStageProps> = ({
             </span>
           </div>
 
-          <div className="p-4 flex-1">
+          <div className="p-3 sm:p-4 flex-1">
             <textarea
               value={scriptText}
               onChange={e => setScriptText(e.target.value)}
               placeholder="Paste screenplay here or upload a PDF/TXT using the button above..."
               rows={18}
-              className="w-full h-[440px] p-4 bg-zinc-950 border border-zinc-800 rounded-lg text-zinc-200 font-mono text-xs sm:text-[13px] leading-relaxed resize-none focus:outline-none focus:border-zinc-500 selection:bg-zinc-700 scrollbar-thin scrollbar-thumb-zinc-800"
+              className="w-full h-[320px] sm:h-[440px] p-3 sm:p-4 bg-zinc-950 border border-zinc-800 rounded-lg text-zinc-200 font-mono text-xs sm:text-[13px] leading-relaxed resize-none focus:outline-none focus:border-zinc-500 selection:bg-zinc-700 scrollbar-thin scrollbar-thumb-zinc-800"
             />
           </div>
         </div>
@@ -379,6 +403,60 @@ export const UploadStage: React.FC<UploadStageProps> = ({
             </div>
           </div>
 
+          {/* Dedicated Conversion In-Progress Card */}
+          {isExtracting && (
+            <div className="bg-zinc-900/95 border border-emerald-500/40 rounded-xl p-4 shadow-2xl space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </div>
+                  <span className="text-xs font-semibold text-zinc-100 flex items-center gap-1.5 font-mono">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                    AI Script Adaptation Active
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/40">
+                  Elapsed: {extractionElapsed}s
+                </span>
+              </div>
+
+              <p className="text-xs text-zinc-300 leading-relaxed">
+                Conversion is happening. It may take some time—<strong>please have patience</strong> while the AI models translate regional nuances, map character aliases, and ensure continuity.
+              </p>
+
+              {/* Dynamic Sub-task indicator */}
+              <div className="p-2.5 bg-zinc-950/90 border border-zinc-800 rounded-lg flex items-center space-x-2.5 text-xs text-zinc-300 font-mono">
+                <Loader2 className="w-4 h-4 text-emerald-400 animate-spin flex-shrink-0" />
+                <span className="truncate">
+                  {extractionElapsed < 5 && 'Parsing screenplay scenes and narrative beats...'}
+                  {extractionElapsed >= 5 && extractionElapsed < 12 && 'Canonicalizing character entities & resolving aliases...'}
+                  {extractionElapsed >= 12 && extractionElapsed < 20 && 'Tracing physical props and multi-scene handoffs...'}
+                  {extractionElapsed >= 20 && extractionElapsed < 32 && `Adapting dialogue to ${activeProfile.name} vernacular...`}
+                  {extractionElapsed >= 32 && 'Finalizing continuity specifications & locked seeds...'}
+                </span>
+              </div>
+
+              {/* Progress bar & patience advice */}
+              <div className="space-y-1.5 pt-1">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="flex items-center gap-1.5 text-amber-300 font-medium">
+                    <Clock className="w-3.5 h-3.5 text-amber-400" />
+                    Usually takes ~15–35 seconds
+                  </span>
+                  <span className="text-zinc-500 text-[10px] font-mono">Do not refresh</span>
+                </div>
+                <div className="w-full bg-zinc-800/80 h-1.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 h-full rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${Math.min(95, 12 + extractionElapsed * 2.8)}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Action CTA */}
           <button
             onClick={handleStartExtraction}
@@ -388,7 +466,7 @@ export const UploadStage: React.FC<UploadStageProps> = ({
             {isExtracting ? (
               <>
                 <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                <span>Normalizing Canonical Entities...</span>
+                <span>Converting & Adapting Vernacular ({extractionElapsed}s)...</span>
               </>
             ) : (
               <>

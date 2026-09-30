@@ -27,6 +27,7 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
   const profile = getCulturalProfile(project.selectedCultureId);
   const [selectedSceneIndex, setSelectedSceneIndex] = useState<number>(0);
   const [scriptMode, setScriptMode] = useState<'romanized' | 'gurmukhi' | 'devanagari'>('romanized');
+  const [mobileViewMode, setMobileViewMode] = useState<'both' | 'adapted' | 'source'>('adapted');
   const [editingLineId, setEditingLineId] = useState<string | null>(null);
   const [editText, setEditText] = useState<string>('');
 
@@ -76,14 +77,14 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
         </div>
 
         {/* Script mode & Proceed */}
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <div className="flex items-center bg-zinc-900 p-1 rounded-lg border border-zinc-800 text-xs">
-            <Languages className="w-3.5 h-3.5 text-zinc-400 ml-1.5 mr-1" />
+            <Languages className="w-3.5 h-3.5 text-zinc-400 ml-1.5 mr-1 flex-shrink-0" />
             {(['romanized', 'gurmukhi', 'devanagari'] as const).map(mode => (
               <button
                 key={mode}
                 onClick={() => handleScriptModeChange(mode)}
-                className={`px-2.5 py-1 rounded text-xs capitalize transition-colors font-mono ${
+                className={`px-2 sm:px-2.5 py-1 rounded text-xs capitalize transition-colors font-mono ${
                   scriptMode === mode
                     ? 'bg-zinc-800 text-zinc-100 font-semibold'
                     : 'text-zinc-400 hover:text-zinc-200'
@@ -98,19 +99,20 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
             onClick={onProceed}
             className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-white text-zinc-950 flex items-center space-x-1.5 transition-colors"
           >
-            <span>Proceed to Visual Gallery</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Proceed to Visual Gallery</span>
+            <span className="inline sm:hidden">Visual Gallery</span>
+            <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
           </button>
         </div>
       </div>
 
-      {/* Scene Navigation Bar */}
-      <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 scrollbar-none font-mono text-xs">
+      {/* Scene Navigation Bar - Scrollable on mobile */}
+      <div className="flex items-center space-x-1.5 overflow-x-auto pb-1.5 scrollbar-none font-mono text-xs -mx-3 px-3 sm:mx-0 sm:px-0">
         {project.scenes.map((scene, idx) => (
           <button
             key={scene.sceneId}
             onClick={() => setSelectedSceneIndex(idx)}
-            className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex items-center space-x-1.5 ${
+            className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex items-center space-x-1.5 flex-shrink-0 ${
               selectedSceneIndex === idx
                 ? 'bg-zinc-800 text-zinc-100 font-semibold border border-zinc-700'
                 : 'bg-zinc-900/60 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
@@ -122,10 +124,40 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
         ))}
       </div>
 
+      {/* Mobile View Mode Switcher (Hidden on Desktop) */}
+      <div className="flex lg:hidden items-center justify-center p-1 bg-zinc-900 border border-zinc-800 rounded-lg text-xs font-mono">
+        <button
+          onClick={() => setMobileViewMode('adapted')}
+          className={`flex-1 py-1.5 px-2 rounded text-center transition-colors ${
+            mobileViewMode === 'adapted' ? 'bg-zinc-800 text-emerald-400 font-semibold shadow-sm' : 'text-zinc-400'
+          }`}
+        >
+          Adapted Script
+        </button>
+        <button
+          onClick={() => setMobileViewMode('source')}
+          className={`flex-1 py-1.5 px-2 rounded text-center transition-colors ${
+            mobileViewMode === 'source' ? 'bg-zinc-800 text-zinc-200 font-semibold shadow-sm' : 'text-zinc-400'
+          }`}
+        >
+          Source Script
+        </button>
+        <button
+          onClick={() => setMobileViewMode('both')}
+          className={`flex-1 py-1.5 px-2 rounded text-center transition-colors ${
+            mobileViewMode === 'both' ? 'bg-zinc-800 text-zinc-200 font-semibold shadow-sm' : 'text-zinc-400'
+          }`}
+        >
+          Both (Stacked)
+        </button>
+      </div>
+
       {/* Split-Screen Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Side: Source Screenplay */}
-        <div className="lg:col-span-5 bg-zinc-900/50 border border-zinc-800 rounded-xl p-5 space-y-5">
+        <div className={`lg:col-span-5 bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 sm:p-5 space-y-4 sm:space-y-5 ${
+          mobileViewMode === 'adapted' ? 'hidden lg:block' : 'block'
+        }`}>
           <div className="flex items-center justify-between pb-3 border-b border-zinc-800 font-mono text-xs">
             <span className="font-semibold text-zinc-400 uppercase tracking-wider">Source (Neutral)</span>
             <span className="text-zinc-600">English Standard</span>
@@ -159,7 +191,9 @@ export const SideBySideEditorStage: React.FC<SideBySideEditorStageProps> = ({
         </div>
 
         {/* Right Side: Adapted Screenplay */}
-        <div className="lg:col-span-7 bg-zinc-900/70 border border-zinc-700/80 rounded-xl p-5 space-y-5">
+        <div className={`lg:col-span-7 bg-zinc-900/70 border border-zinc-700/80 rounded-xl p-4 sm:p-5 space-y-4 sm:space-y-5 ${
+          mobileViewMode === 'source' ? 'hidden lg:block' : 'block'
+        }`}>
           <div className="flex items-center justify-between pb-3 border-b border-zinc-800 font-mono text-xs">
             <div className="flex items-center space-x-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
